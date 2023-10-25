@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #concent {
+      margin: auto;
+      border: 1px solid red;
+      height: 900px;
+    }
+
+    #game {
+      width: 1215px;
+      height: 496px;
+      margin: auto;
+      position: relative;
+    }
+
+    #background {
+      width: 100%;
+      /* opacity: 0.3; */
+      position: absolute;
+    }
+
+    #background_2 {
+      position: absolute;
+      width: 100%;
+    }
+
+    #background_1 {
+      width: 100%;
+      position: absolute;
+    }
+
+
+    #text {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+    }
+
+    .fish {
+      height: 100px;
+      position: absolute;
+      /* 使用者不能選取 */
+      user-select: none;
+      /* 使用者不能拖曳 */
+      -webkit-user-drag: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="concent">
+
+    <div id="game">
+      <img src="./image/background.png" id="background">
+      <div id="game2">
+        <img src="./image/background_2.png" id="background_2">
+        <div id="game3">
+          <img src="./image/background_1.png" id="background_1">
+        </div>
+      </div>
+    </div>
+
+    <div id="text">
+      <input type="button" value="開始" id="btn-start">
+      <br>
+      <p>分數<span id="score">0</span></p>
+      <p>剩餘<span id="time">0</span></p>
+      <p>最高分玩家<span id="humanH">-</span></p>
+      <p>最高分分數<span id="scoreH">0</span></p>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+
+  <script>
+
+
+    let score = 0
+
+
+    $('#btn-start').click(function () {
+      // 停用按鈕
+      $(this).attr('disabled', true)
+      // 重設
+      score = 0
+      $('#score').text(score)
+      time = 30
+      $('#time').text
+      // 因為 setInterval 裡的 this 會指向 window 所以先把 this 存起來
+      const _this = this
+
+      // 開始遊戲
+      timer = setInterval(function () {
+        // 倒數
+        time--
+        $('#time').text(time)
+        // 隨機 1-10
+        const random = Math.ceil(Math.random() * 10)
+        // 如果隨機數字大於5 且數量小於5
+        if (random > 5 && $('.fish').length < 5) {
+          // 隨機位置
+          const top = Math.round(Math.random() * 100) + '%'
+          const left = Math.round(Math.random() * 100) + '%'
+          // 產生魚
+          // const fish = $(`<img src="./image/kodai_sacabambaspis.png" class="fish" style="top:${top};left:${left}">`)
+          $('#game').append(`<img src="./image/kodai_sacabambaspis.png" class="fish" style="top:${top};left:${left}">`)
+          $('#game2').append(`<img src="./image/kodai_sacabambaspis.png" class="fish" style="top:${top};left:${left}">`)
+          $('#game3').append(`<img src="./image/kodai_sacabambaspis.png" class="fish" style="top:${top};left:${left}">`)
+          moveFish(fish)
+        }
+        // 如果時間到了
+        if (time === 0) {
+          clearInterval(timer)
+          // 重新啟用按鈕
+          $(_this).attr('disabled', false)
+          // 清空遊戲區域
+          // .empty() 會把裡面的子元素都刪掉
+          $('#game2').empty()
+
+
+          if (score > high.score) {
+            Swal.fire({
+              icon: 'success',
+              title: '時間到',
+              text: `你最高分，你得到${score}分`,
+              // input 的 type
+              input: 'text',
+              // input 的其他屬性
+              inputAttributes: {
+                required: true
+              },
+              inputPlaceholder: '請輸入的名字',
+              // 驗證錯誤時顯示的文字
+              validationMessage: '請輸入的名字',
+              // 不允許點擊外面關閉對話框
+              allowOutsideClick: false,
+              // 不允許按 ESC 關閉對話框
+              allowEscapeKey: false
+              // .then　對話框怎麼關閉，如果裡面有input的話 就會有.value
+            }).then(function (result) {
+              console.log(result)
+              high.score = score
+              high.name = result.value
+              $('#humanH').text(high.name)
+              $('#scoreH').text(high.score)
+              // localStorage.setItem(名稱, 文字)
+              // localStorage.名稱 = 文字
+              localStorage.high = JSON.stringify(high)
+            })
+
+          } else {
+            Swal.fire({
+              icon: 'info',
+              title: '時間到',
+              text: `你得到${score}分`
+            })
+          }
+        }
+
+      }, 1000)
+    })
+    // 點擊
+    $('#game').on('click', '.fish', function () {
+      $(this).stop()
+      $(this).attr('src', '../0.課程資料/blood.png')
+      $(this).removeClass('fish').addClass('blood')
+      score++
+      $('#score').text(score)
+    })
+
+
+    function moveFish(fish) {
+      // 隨機位置
+      const top = Math.round(Math.random() * 100) + '%'
+      const left = Math.round(Math.random() * 100) + '%'
+      fish.animate({ top, left }, 2000, function () {
+        moveFish(fish)
+      })
+    }
+
+  </script>
+</body>
+
+</html>
