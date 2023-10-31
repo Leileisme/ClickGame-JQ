@@ -7,34 +7,63 @@ body {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 1400px;
-	height: 900px;
+	width: 1500px;
+	height: 1000px;
 	background-color: rgb(255, 213, 135);
 }
 
 #game {
-	/* position: absolute;
+	position: relative; /* position: absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%); */
-	width: 900px;
+	width: 1000px;
+	height: 955px;
 	float: right;
 	margin-right: 30px;
 	margin-top: 20px;
 	border: 5px solid #fff;
 	box-sizing: border-box;
 	border-radius: 10px;
+
+	/* 倒數計時加的 */
+	/* background-color: #663600; */
+	background-color: #ffffff;
 }
 
-#game img {
+/* 遊戲開始倒數 */
+#number {
+	position: absolute;
+	left: 400px;
+	top: 65px;
+	/* transform: translate(-54%, -48%); */
+	font-family: '俐方體11號';
+	color: #ff79a4;
+	transform: rotate(8deg);
+	/* text-shadow: 0 0 20px #80f9ff;
+	text-shadow: 0 0 40px #ff79a4;
+	text-shadow: 0 0 40px #ffffff; */
+
+	/* 倒數開始給的屬性 350 */
+
+	font-size: 0px;
+}
+
+#game_img {
 	width: 100%;
+	height: 100%;
+	user-select: none;
+	-webkit-user-drag: none;
+
+	/* 倒數計時 */
+	/* opacity: 0.8; */
 }
 
 #left {
 	/* background-color: cadetblue; */
 	box-sizing: border-box;
 	background-color: wheat;
-	height: 860px;
+	height: 955px;
 	width: 420px;
 	float: left;
 	margin-top: 20px;
@@ -42,8 +71,10 @@ body {
 	position: relative;
 	border: 5px solid #fff;
 	border-radius: 10px;
+	user-select: none;
 }
 
+/* left - 文字 選擇地圖 */
 #selectMap {
 	width: 360px;
 	position: absolute;
@@ -54,8 +85,10 @@ body {
 	font-size: 50px;
 	font-family: '俐方體11號';
 	font-weight: 500;
+	user-select: none;
 }
 
+/* left - 地圖 */
 #map {
 	width: 350px;
 	height: 350px;
@@ -68,14 +101,16 @@ body {
 	border-radius: 10px;
 }
 
-#map img {
+#map_img {
 	width: 100%;
 	height: 100%;
 	border-radius: 10px;
 	border: 5px solid #fff;
+	user-select: none;
+	-webkit-user-drag: none;
 }
 
-#map #L {
+#map_btn_L {
 	/* width: 40px;
 	height: 40px; */
 	position: absolute;
@@ -96,7 +131,7 @@ body {
 	font-family: 'Pixel';
 }
 
-#map #R {
+#map_btn_R {
 	/* width: 40px;
 	height: 40px; */
 	position: absolute;
@@ -117,10 +152,13 @@ body {
 	font-family: 'Pixel';
 }
 
+/* left - 開始按鈕 */
 #btn {
 	width: 280px;
 	height: 100px;
-	background-color: #fff;
+	background-color: wheat;
+	background-color: #ff79a4;
+	color: #fff;
 	border-radius: 10px;
 	position: absolute;
 	left: 50%;
@@ -134,6 +172,7 @@ body {
 	font-family: 'Pixel';
 }
 
+/* left - 計分 */
 #score {
 	width: 350px;
 	height: 50px;
@@ -142,16 +181,18 @@ body {
 	border-radius: 10px;
 	box-shadow: 5px 7px 1px #aaa;
 	background-color: #fff;
+	/* background-color: #ffa916; */
 	font-family: '俐方體11號';
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	bottom: 220px;
+	top: 575px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
 }
 
+/* left - 計時 */
 #time {
 	width: 350px;
 	height: 50px;
@@ -164,13 +205,14 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	bottom: 150px;
+	top: 645px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
 }
 
-.scoreN {
+/* left - 計分/計時的特殊字 */
+#score_number {
 	text-align: center;
 	font-family: '俐方體11號';
 	position: absolute;
@@ -183,20 +225,92 @@ body {
 	color: rgb(255, 118, 118);
 }
 
-#highScore {
+#time_number {
+	text-align: center;
+	font-family: '俐方體11號';
+	position: absolute;
+	left: 55%;
+	top: 0;
+	/* transform: translateX(0, -50%); */
+	font-size: 50px;
+	font-weight: 600;
+	padding-top: 7px;
+	color: rgb(255, 118, 118);
+}
+
+/* left - 紀錄保持人 */
+#high {
 	width: 350px;
 	height: 50px;
 	line-height: 50px;
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 5px 7px 1px #aaa;
-	background-color: #fff;
+	background-color: #ffffff;
+	background-color: #d8d8d8;
 	font-family: '俐方體11號';
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	bottom: 80px;
+	bottom: 25px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
+}
+
+/* left - 工具 */
+/* line-height 為什麼這邊不能用??? */
+.tool {
+	width: 100px;
+	height: 100px;
+	box-shadow: 5px 7px 1px #aaa;
+	background-color: #fff;
+	/* background-color: #ff4545; */
+	border-radius: 10px;
+	text-align: center;
+	/* color: #fff; */
+	/* font-family: '俐方體11號'; */
+}
+
+#tool_content i {
+	font-size: 50px;
+	line-height: 100px;
+}
+
+#t1 {
+	position: absolute;
+	left: 40px;
+	top: 720px;
+}
+
+#t2 {
+	position: absolute;
+	left: 165px;
+	top: 720px;
+	line-height: 100px;
+}
+
+#t3 {
+	position: absolute;
+	left: 290px;
+	top: 720px;
+	line-height: 100px;
+}
+
+#t3 i {
+	font-size: px;
+}
+
+/* left - 畫面分隔線 */
+#line {
+	width: 350px;
+	height: 5px;
+	background-color: #fff;
+	box-shadow: 0.5px 0 1px #aaa;
+
+	position: absolute;
+	left: 50%;
+	transform: translateX(-48%);
+	bottom: 98px;
+	box-shadow: 5px 7px 1px #aaa;
 }

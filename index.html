@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>威力在哪?(會走的威力)</title>
 
+  <!-- icon CSS -->
+  <link rel="stylesheet" href="./CSS/all.min.css">
+
+  <!-- 我的 CSS -->
   <link rel="stylesheet" href="./CSS/style.css">
   <style>
     @font-face {
@@ -23,29 +27,126 @@
 <body>
   <div id="content">
     <div id="game">
-      <img src="./image/威力背景2_城市(無威力).jpg">
+      <!-- 遊戲封面 whereWilly -->
+      <!-- 這邊看要怎麼換地圖 -->
+      <img src="./image/WhereWilly03.png" id="game_img">
+      <!-- <img src="./image/map01.jpg" id="game_img"> -->
+
+
+
+      <div id="number">3</div>
+      <!-- <div id="willy"></div> -->
     </div>
+
+
 
     <div id="left">
       <div id="selectMap">選擇地圖</div>
-
+      <!--  小地圖 -->
       <div id="map">
-        <img src="./image/威力背景2_城市(無威力).jpg">
-        <div id="L">←</div>
-        <div id="R">→</div>
+        <img src="./image/map01.jpg" id="map_img">
+        <div id="map_btn_L">←</div>
+        <div id="map_btn_R">→</div>
       </div>
-
+      <!-- 開始按鈕 -->
       <div id="btn_box">
         <div id="btn">Start</div>
       </div>
 
-      <div id="score"> 分　數：<span class="scoreN">00</span> 　　分</div>
-      <div id="time"> 餘時間：<span class="scoreN">00</span> 　　秒</div>
-      <div id="highScore">最高分： 0 分</div>
-      <div id="highName"></div>
+      <!-- 分數/時間 -->
+      <div id="score"> 分　數：<span id="score_number">00</span> 　　分</div>
+      <div id="time"> 餘時間：<span id="time_number">00</span> 　　秒</div>
+      <!-- 工具 -->
+      <div id="tool_content">
+        <div class="tool" id="t1"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="tool" id="t2"><i class="fa-solid fa-wand-sparkles"></i></div>
+        <div class="tool" id="t3"><i class="fa-regular fa-circle-question"></i></div>
+      </div>
+
+      <div id="line"></div>
+      <!-- 最高分 -->
+      <div id="high">
+        <span id="highScore">最高分：<span>00</span> 分 / </span>
+        <span id="highName">???</span>
+      </div>
+
     </div>
 
   </div>
 </body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+  integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+  crossorigin='anonymous'></script>
+<script>
+
+  let score = 0
+  let time = 30
+
+
+  // 選擇地圖
+  let map_btn = 1
+  $('#map_btn_R').click(function () {
+    if (map_btn < 3) {
+      map_btn += 1
+      $('#map_img').attr('src', `./image/map0${map_btn}.jpg`)
+    } else {
+      return
+    }
+  })
+
+  $('#map_btn_L').click(function () {
+    if (map_btn > 1) {
+      map_btn -= 1
+      $('#map_img').attr('src', `./image/map0${map_btn}.jpg`)
+    } else {
+      return
+    }
+  })
+
+  // 這邊 個位數 如何置右?
+  $('#btn_box').click(function () {
+    // 初始畫面
+    $(this).attr('disabled', true)
+    $('#btn').css('backgroundColor', '#ccc')
+    $('#btn').css('border', '3px solid #ddd')
+    $('#btn').css('boxShadow', '5px 5px 1.5px #aaa')
+    $('#btn').css('top', '458px')
+
+    score = 0
+    $('#score_number').text(score)
+    $('#time_number').text(time)
+
+    // 開始前3秒
+    let countdown_px = 600
+    let countdown_number = 3
+    $('#game').css('backgroundColor', '#fff')
+    $('#game_img').attr('src', `./image/WhereWilly04.png`)
+    $('#number').css('fontSize', `350px`)
+
+
+    let countdown = setInterval(function () {
+      countdown_number -= 1
+      $('#number').text(`${countdown_number}`)
+      if (countdown_number === 1) {
+        $('#number').css('left', '430px')
+      }
+    }, 1000)
+
+    setTimeout(() => {
+      clearInterval(countdown)
+    }, 2000)
+
+
+    // 3秒後進入遊戲
+    setTimeout(() => {
+      $('#game_img').attr('src', `./image/map0${map_btn}.jpg`)
+      $('#number').css('display', `none`)
+
+
+    }, 3000);
+
+  })
+
+</script>
 
 </html>
