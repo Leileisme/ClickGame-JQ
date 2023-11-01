@@ -49,9 +49,13 @@
         <div id="map_btn_R">→</div>
       </div>
       <!-- 開始按鈕 -->
-      <div id="btn_box">
+
+
+      <label id="btn_box" for="starBtn">
         <div id="btn">Start</div>
-      </div>
+      </label>
+
+      <input type="button" id="starBtn">
 
       <!-- 分數/時間 -->
       <div id="score"> 分　數：<span id="score_number">00</span> 　　分</div>
@@ -104,9 +108,18 @@
   })
 
   // 這邊 個位數 如何置右?
+
+
   $('#btn_box').click(function () {
     // 初始畫面
+
+    // 以下對開始鈕無效 why?
     $(this).attr('disabled', true)
+    $('#starBtn').attr('disabled', true)
+
+    // 
+    $(this).off('click')
+
     $('#btn').css('backgroundColor', '#ccc')
     $('#btn').css('border', '3px solid #ddd')
     $('#btn').css('boxShadow', '5px 5px 1.5px #aaa')
@@ -115,6 +128,10 @@
     score = 0
     $('#score_number').text(score)
     $('#time_number').text(time)
+
+
+    $('#map_btn_R').off('click')
+    $('#map_btn_L').off('click')
 
     // 開始前3秒
     let countdown_px = 600

@@ -172,6 +172,11 @@ body {
 	font-family: 'Pixel';
 }
 
+/* 開始按鈕關聯的btn */
+#starBtn {
+	display: none;
+}
+
 /* left - 計分 */
 #score {
 	width: 350px;
