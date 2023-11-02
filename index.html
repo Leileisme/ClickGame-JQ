@@ -25,37 +25,27 @@
 </head>
 
 <body>
+
   <div id="content">
-    <div id="game">
-      <!-- 遊戲封面 whereWilly -->
-      <!-- 這邊看要怎麼換地圖 -->
-      <img src="./image/WhereWilly03.png" id="game_img">
-      <!-- <img src="./image/map01.jpg" id="game_img"> -->
-
-
-
-      <div id="number">3</div>
-      <!-- <div id="willy"></div> -->
-    </div>
-
 
 
     <div id="left">
       <div id="selectMap">選擇地圖</div>
-      <!--  小地圖 -->
+
       <div id="map">
         <img src="./image/map01.jpg" id="map_img">
-        <div id="map_btn_L">←</div>
-        <div id="map_btn_R">→</div>
+        <input id="map_btn_L" value="←" type="button">
+        <input id="map_btn_R" value="→" type="button">
       </div>
+
       <!-- 開始按鈕 -->
+      <input id="btn" type="button" value="Start">
 
+      <!-- <label id="#btn" for="starBtn">
+      <div id="btn">Start</div>
+    </label> -->
 
-      <label id="btn_box" for="starBtn">
-        <div id="btn">Start</div>
-      </label>
-
-      <input type="button" id="starBtn">
+      <!-- <input type="button" id="starBtn"> -->
 
       <!-- 分數/時間 -->
       <div id="score"> 分　數：<span id="score_number">00</span> 　　分</div>
@@ -69,23 +59,101 @@
 
       <div id="line"></div>
       <!-- 最高分 -->
+      <!-- 切換簡單版/困難版的紀錄保持人 -->
       <div id="high">
         <span id="highScore">最高分：<span>00</span> 分 / </span>
         <span id="highName">???</span>
       </div>
+    </div>
+
+
+    <!-- 中間 -->
+    <div id="middle_game">
+      <!-- 倒數符號 -->
+      <div id="number"></div>
+
+      <!-- game_concent 的底圖 -->
+      <img src="./image/WhereWilly03.png" id="game_img">
+      <!-- <img src="./image/map01.jpg" id="game_img"> -->
+
+      <!-- 遊戲區 -->
+      <div id="game">
+
+        <div id="game_02">
+          <!-- map01 -->
+          <div id="map01_2">
+            <img src="./image/map01_21.png" id="map01_21">
+            <img src="./image/map01_22.png" id="map01_22">
+            <img src="./image/map01_23.png" id="map01_23">
+            <img src="./image/map01_24.png" id="map01_24">
+          </div>
+
+          <!-- map02 -->
+
+
+          <div id="game_01">
+            <!-- mpa01 -->
+            <div id="map01_1">
+              <img src="./image/map01_1.png" id="map01_1">
+            </div>
+
+            <!-- map02 -->
+
+          </div>
+        </div>
+
+
+        <!-- <div class="willyBox"><img src="./image/Willy_02.png"></div> -->
+      </div>
+    </div>
+
+
+    <div class="right">
+      <div id="title">通緝角色</div>
+      <div class="box"><img src="./image/Willy_01.png"></div>
+      <div class="box"><img src="./image/Willy_02.png"></div>
+      <div class="box"><img src="./image/Willy_03.png"></div>
+      <div class="box"><img src="./image/willy_dog.png"></div>
+      <!-- <div class="box"></div> -->
+
 
     </div>
+
+
+
+
+
+
+
 
   </div>
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
   integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
   crossorigin='anonymous'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js'
+  integrity='sha512-zB7yJLSASiSevQmWCrQaq+z/f5zRIa884hwWgmK1oI3MfolIzKcpDtyfBsrGqUi/hMCObVwr/+SZTByOqh0zkQ=='
+  crossorigin='anonymous'></script>
+
 <script>
 
-  let score = 0
-  let time = 30
 
+  let score = 0
+  let time = 0
+  let countdown_number = 3
+  let high = {
+    name: '???',
+    score: '00'
+  }
+
+  // 把保存在本地端的最高分叫出來
+  if (localStorage.highest) {
+    const data = JSON.parse(localStorage.highest)
+    high.name = data.name
+    high.score = data.score
+    $('#highName').text(high.name)
+    $('#highScore').text(high.score)
+  }
 
   // 選擇地圖
   let map_btn = 1
@@ -109,16 +177,14 @@
 
   // 這邊 個位數 如何置右?
 
-
-  $('#btn_box').click(function () {
+  // function btnBoxClickEvent() {
+  $('#btn').click(function () {
     // 初始畫面
 
-    // 以下對開始鈕無效 why?
+    // why label input 無效?
     $(this).attr('disabled', true)
-    $('#starBtn').attr('disabled', true)
 
-    // 
-    $(this).off('click')
+
 
     $('#btn').css('backgroundColor', '#ccc')
     $('#btn').css('border', '3px solid #ddd')
@@ -127,18 +193,21 @@
 
     score = 0
     $('#score_number').text(score)
+    time = 30
     $('#time_number').text(time)
 
 
-    $('#map_btn_R').off('click')
-    $('#map_btn_L').off('click')
+    $('#map_btn_R').attr('disabled', true)
+    $('#map_btn_L').attr('disabled', true)
 
     // 開始前3秒
-    let countdown_px = 600
-    let countdown_number = 3
-    $('#game').css('backgroundColor', '#fff')
+
+
     $('#game_img').attr('src', `./image/WhereWilly04.png`)
+    $('#number').css('display', `block`)
     $('#number').css('fontSize', `350px`)
+    $('#number').text('3')
+    countdown_number = 3
 
 
     let countdown = setInterval(function () {
@@ -160,9 +229,84 @@
       $('#number').css('display', `none`)
 
 
+      // 開始遊戲 為什麼老師示範是前面變數設為 let timer = 0 ?
+      let begin = setInterval(() => {
+        // 遊戲空間(待製作)
+        time--
+        $('#time_number').text(time)
+
+
+        const random = Math.ceil(Math.random() * 10)
+        if (random > 5) {
+          const top = Math.round(Math.random() * 100) + '%'
+          const left = Math.round(Math.random() * 100) + '%'
+
+          const willy01 = $(`<div class="willyBox"><img src="./image/Willy_01.png" style="top:${top}" ; left:"${left};"></div>`)
+          $('#game_01').append(willy01)
+        }
+
+
+
+        // 時間到之後
+        if (time === 0) {
+          clearInterval(begin)
+          // 開始鈕樣式復原
+          $('#btn').css('backgroundColor', '#ff79a4')
+          $('#btn').css('border', '0px')
+          $('#btn').css('boxShadow', '8px 8px 1px #aaa')
+          $('#btn').css('top', '460px')
+
+          // 開始鈕+地圖選擇器 開
+          $(this).attr('disabled', false)
+          $('#map_btn_R').attr('disabled', false)
+          $('#map_btn_L').attr('disabled', false)
+
+          // 清空遊戲空間 
+          $('#game').empty()
+          // 放回封面圖
+          $('#game_img').attr('src', `./image/WhereWilly03.png`)
+
+
+          if (score > high.score) {
+            Swal.fire({
+              icon: 'success',
+              title: '時間到',
+              text: `最高分誕生！你得到${score}分`,
+              input: 'text',
+              inputAttributes: {
+                required: true
+              },
+              // 玩家輸入名字
+              inputPlaceholder: '請輸入的名字',
+              // 驗證錯誤時的文字
+              validationMessage: '請輸入的名字',
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            }).then(function (result) {
+              console.log(result)
+              high.score = score
+              high.name = result.value
+              $('#highScore').text(high.score)
+              $('highName').text(high.name)
+              localStorage.highest = JSON.stringify(high)
+            })
+          }
+          else {
+            Swal.fire({
+              title: '時間到',
+              text: `你得到${score}分`
+            })
+          }
+
+        }
+
+      }, 1000)
     }, 3000);
 
   })
+  // }
+
+  // btnBoxClickEvent()
 
 </script>
 
