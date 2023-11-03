@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     time--
+        $('#time_number').text(time)
+
+
+        const random = Math.ceil(Math.random() * 10)
+
+        if (random > 5 && $('.willyBox').length < 5) {
+          let top = Math.round(Math.random() * 100) + '%'
+          const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
+          let left = Math.round(Math.random() * 100) + '%'
+          const overLeft = ['97%', '98%', '99%', '100%']
+
+          if (overTop.includes(top)) {
+            top = `calc(${top} - 68px)`
+          }
+          if (overLeft.includes(left)) {
+            left = `calc(${left} - 30px)`
+          }
+
+          const willy01 = $(`<div class="willyBox" style="top:${top} ; left:${left};"><img src="./image/Willy_01.png" ></div>`)
+          $('#gameBox1_willy').append(willy01)
+        }
+
+  </script>
+</body>
+</html>

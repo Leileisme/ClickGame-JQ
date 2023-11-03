@@ -79,22 +79,34 @@
       <!-- 遊戲區 -->
       <div id="game">
 
-        <div id="game_02">
+
+        <div id="game_willy"></div>
+
+        <div id="gameBox2">
           <!-- map01 -->
-          <div id="map01_2">
-            <img src="./image/map01_21.png" id="map01_21">
-            <img src="./image/map01_22.png" id="map01_22">
-            <img src="./image/map01_23.png" id="map01_23">
-            <img src="./image/map01_24.png" id="map01_24">
+          <div id="gameBox2_map01">
+            <img src="./image/map01_21.png" id="map01_21_img">
+            <img src="./image/map01_22.png" id="map01_22_img">
+            <img src="./image/map01_23.png" id="map01_23_img">
+            <img src="./image/map01_24.png" id="map01_24_img">
           </div>
+
+          <div id="gameBox2_willy"></div>
 
           <!-- map02 -->
 
 
-          <div id="game_01">
+          <div id="gameBox1">
             <!-- mpa01 -->
-            <div id="map01_1">
-              <img src="./image/map01_1.png" id="map01_1">
+            <div id="gameBox1_map01">
+              <img src="./image/map01_1.png" id="map01_1_img">
+            </div>
+
+
+
+            <div id="gameBox1_willy">
+              <!-- <img src="./image/Willy_01.png" style="width: 30px; height: 68px; position: absolute; top:calc(92%);
+               left: calc(96%);"> -->
             </div>
 
             <!-- map02 -->
@@ -229,6 +241,24 @@
       $('#number').css('display', `none`)
 
 
+      // 設定 willy 隨機出現，若超過 game 範圍則往內
+      // 但為什麼百分比老師的不會超過框框?
+      let top = Math.round(Math.random() * 100) + '%'
+      const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
+      let left = Math.round(Math.random() * 100) + '%'
+      const overLeft = ['97%', '98%', '99%', '100%']
+
+      if (overTop.includes(top)) {
+        top = `calc(${top} - 68px)`
+      }
+      if (overLeft.includes(left)) {
+        left = `calc(${left} - 30px)`
+      }
+
+      const willy01_1 = $(`<div class="willyBox" style="top:${top} ; left:${left};"><img src="./image/Willy_01.png" ></div>`)
+      $('#gameBox1_willy').append(willy01_1)
+
+
       // 開始遊戲 為什麼老師示範是前面變數設為 let timer = 0 ?
       let begin = setInterval(() => {
         // 遊戲空間(待製作)
@@ -237,12 +267,10 @@
 
 
         const random = Math.ceil(Math.random() * 10)
-        if (random > 5) {
-          const top = Math.round(Math.random() * 100) + '%'
-          const left = Math.round(Math.random() * 100) + '%'
 
-          const willy01 = $(`<div class="willyBox"><img src="./image/Willy_01.png" style="top:${top}" ; left:"${left};"></div>`)
-          $('#game_01').append(willy01)
+        if (random > 5 && $('.willyBox').length < 5) {
+          const willy01 = $(`<div class="willyBox" style="top:${top} ; left:${left};"><img src="./image/Willy_01.png" ></div>`)
+          $('#gameBox1_willy').append(willy01)
         }
 
 
@@ -262,7 +290,7 @@
           $('#map_btn_L').attr('disabled', false)
 
           // 清空遊戲空間 
-          $('#game').empty()
+          $('#gameBox1_willy').empty()
           // 放回封面圖
           $('#game_img').attr('src', `./image/WhereWilly03.png`)
 

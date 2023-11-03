@@ -326,38 +326,38 @@ body {
 	height: 100%;
 }
 
-/* 多層地圖 */
-/* map01 */
+/* map01放地圖區 */
 
-#map01_2,
-#map01_1 {
+#gameBox2_map01,
+#gameBox1_map01 {
 	display: none;
 }
 
-#map01_1 {
+/* 多層地圖的img */
+#map01_1_img {
 	position: absolute;
 	bottom: 0;
 }
 
-#map01_21 {
+#map01_21_img {
 	position: absolute;
 	top: 445px;
 	left: 144px;
 }
 
-#map01_22 {
+#map01_22_img {
 	position: absolute;
 	top: 644px;
 	left: 337px;
 }
 
-#map01_23 {
+#map01_23_img {
 	position: absolute;
 	top: 554px;
 	left: 701px;
 }
 
-#map01_24 {
+#map01_24_img {
 	position: absolute;
 	top: 341px;
 	left: 390px;
@@ -369,10 +369,11 @@ body {
 	position: absolute;
 	/* left: 50%; */
 	width: 30px;
+	height: 68px;
 	/* width: 50px; */
 }
 
-#willyBox img {
+.willyBox img {
 	width: 100%;
 }
 
