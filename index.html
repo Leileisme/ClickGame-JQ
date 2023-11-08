@@ -231,38 +231,54 @@
     score: '00'
   }
 
+  let high_map = [
+    {
+      name: '???',
+      score: '00'
+    },
+    {
+      name: '???',
+      score: '00'
+    }, {
+      name: '???',
+      score: '00'
+    },
+  ]
+
+  let map_btn = 1
+
 
   // 把保存在本地端的最高分叫出來
-  // if (map_btn === 1) {
-  // if (localStorage.highest_map01) {
-  //   const data = JSON.parse(localStorage.highest_map01)
-  //   high_map01.name = data.name
-  //   high_map01.score = data.score
-  //   $('#highName_map01').text(high_map01.name)
-  //   $('#highScoreNumber_map01').text(high_map01.score)
-  // }
-  // }
+  if (map_btn === 1) {
+    if (localStorage.highest_map01) {
+      const data = JSON.parse(localStorage.highest_map01)
+      high_map01.name = data.name
+      high_map01.score = data.score
+      $('#highName_map01').text(high_map01.name)
+      $('#highScoreNumber_map01').text(high_map01.score)
+    }
+  }
 
 
-  // if (map_btn === 2) {
-  //   if (localStorage.highest_map02) {
-  //     const data = JSON.parse(localStorage.highest_map02)
-  //     high_map02.name = data.name
-  //     high_map02.score = data.score
-  //     $('#highName_map02').text(high_map02.name)
-  //     $('#highScoreNumber_map02').text(high_map02.score)
-  //   }
-  // }
+  if (map_btn === 2) {
+    if (localStorage.highest_map02) {
+      const data = JSON.parse(localStorage.highest_map02)
+      high_map02.name = data.name
+      high_map02.score = data.score
+      $('#highName_map02').text(high_map02.name)
+      $('#highScoreNumber_map02').text(high_map02.score)
+    }
+  }
 
-  // if (map_btn === 3) {
-  //   if (localStorage.highest_map01) {
-  //     const data = JSON.parse(localStorage.highest_map03)
-  //     high_map03.name = data.name
-  //     high_map03.score = data.score
-  //     $('#highName_map03').text(high_map03.name)
-  //     $('#highScoreNumber_map03').text(high_map03.score)
-  //   }
-  // }
+  if (map_btn === 3) {
+    if (localStorage.highest_map01) {
+      const data = JSON.parse(localStorage.highest_map03)
+      high_map03.name = data.name
+      high_map03.score = data.score
+      $('#highName_map03').text(high_map03.name)
+      $('#highScoreNumber_map03').text(high_map03.score)
+    }
+  }
 
 
   // if (localStorage.high) {
@@ -296,7 +312,7 @@
 
 
   // 選擇地圖
-  let map_btn = 1
+
   const highScoreNumber_map = [
     `#highScoreNumber_map01`,
     `#highScoreNumber_map02`,
@@ -673,7 +689,7 @@
                 high_map01.name = result.value
                 $('#highScoreNumber_map01').text(high_map01.score)
                 $('#highName_map01').text(high_map01.name)
-                // localStorage.highest_map01 = JSON.stringify(high_map01)
+                localStorage.highest_map01 = JSON.stringify(high_map01)
               })
             } else {
               Swal.fire({

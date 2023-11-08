@@ -328,7 +328,7 @@ body {
 
 #game {
 	/* 以下為啥無效 */
-	cursor: url(../image/cursor_black.png) 50 50 auto;
+	cursor: url(../image/cursor_black.png) 50 50, auto;
 	position: absolute;
 	top: 0;
 	left: 0;
