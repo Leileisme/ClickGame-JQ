@@ -7,8 +7,8 @@ body {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	width: 1740px;
-	height: 940px;
+	width: 1424px;
+	height: 800px;
 	background-color: rgb(255, 213, 135);
 }
 
@@ -16,11 +16,11 @@ body {
 	/* background-color: cadetblue; */
 	box-sizing: border-box;
 	background-color: wheat;
-	height: 910px;
-	width: 420px;
+	height: 764px;
+	width: 336px;
 	float: left;
-	margin-top: 15px;
-	margin-left: 20px;
+	margin-top: 20px;
+	margin-left: 30px;
 	position: relative;
 	border: 5px solid #fff;
 	border-radius: 10px;
@@ -29,7 +29,7 @@ body {
 
 /* left - 文字 選擇地圖 */
 #selectMap {
-	width: 360px;
+	width: 288px;
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
@@ -43,12 +43,12 @@ body {
 
 /* left - 地圖 */
 #map {
-	width: 350px;
-	height: 350px;
+	width: 280px;
+	height: 280px;
 	background-color: #fff;
 	position: absolute;
 	left: 50%;
-	top: 78px;
+	top: 85px;
 	transform: translateX(-50%);
 	box-shadow: 15px 15px 1px #aaa;
 	border-radius: 10px;
@@ -103,8 +103,8 @@ body {
 
 #btn {
 	border: none;
-	width: 350px;
-	height: 100px;
+	width: 280px;
+	height: 80px;
 	background-color: wheat;
 	background-color: #ff79a4;
 	color: #fff;
@@ -112,27 +112,27 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	top: 450px;
+	top: 460px;
 	/* text-align: center; */
 	padding-left: 65px;
 	font-size: 80px;
-	line-height: 100px;
-	box-shadow: 7px 7px 1px #aaa;
+	line-height: 80px;
+	box-shadow: 8px 8px 1px #aaa;
 	font-family: 'Pixel';
 	padding-right: 33px;
 	cursor: pointer;
 }
 
 /* 開始按鈕關聯的btn */
-/* #starBtn {
+#starBtn {
 	display: none;
-} */
+}
 
 /* left - 計分 */
 #score {
-	width: 350px;
-	height: 50px;
-	line-height: 50px;
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 5px 7px 1px #aaa;
@@ -142,7 +142,7 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	top: 566px;
+	top: 575px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
@@ -150,9 +150,9 @@ body {
 
 /* left - 計時 */
 #time {
-	width: 350px;
-	height: 50px;
-	line-height: 50px;
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 5px 7px 1px #aaa;
@@ -161,7 +161,7 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	top: 638px;
+	top: 645px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
@@ -196,9 +196,9 @@ body {
 
 /* left - 紀錄保持人 */
 #high {
-	width: 350px;
-	height: 50px;
-	line-height: 50px;
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 5px 7px 1px #aaa;
@@ -208,31 +208,16 @@ body {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	bottom: 18px;
+	bottom: 25px;
 	font-size: 30px;
 	font-weight: 600;
 	padding-top: 7px;
 }
 
-/* #highScoreNumber_map01,
-#highName_map01, */
-#highScoreNumber_map02,
-#highName_map02,
-#highScoreNumber_map03,
-#highName_map03 {
-	display: none;
-}
-
 /* left - 工具 */
 /* line-height 為什麼這邊不能用??? */
-
-#tool_content {
-	position: absolute;
-	top: 710px;
-}
-
 .tool {
-	width: 100px;
+	width: 80px;
 	height: 80px;
 	box-shadow: 5px 7px 1px #aaa;
 	background-color: #fff;
@@ -244,38 +229,45 @@ body {
 }
 
 #tool_content i {
-	font-size: 50px;
+	font-size: 40px;
 	line-height: 80px;
 }
 
 #t1 {
 	position: absolute;
 	left: 40px;
+	top: 720px;
 }
 
 #t2 {
 	position: absolute;
 	left: 165px;
+	top: 720px;
 	line-height: 100px;
 }
 
 #t3 {
 	position: absolute;
 	left: 290px;
+	top: 720px;
 	line-height: 100px;
+}
+
+#t3 i {
+	font-size: px;
 }
 
 /* left - 畫面分隔線 */
 #line {
-	width: 350px;
-	height: 4.5px;
+	width: 280px;
+	height: 4px;
 	background-color: #fff;
 	box-shadow: 0.5px 0 1px #aaa;
 
 	position: absolute;
 	left: 50%;
 	transform: translateX(-48%);
-	bottom: 90px;
+	bottom: 98px;
 	box-shadow: 5px 7px 1px #aaa;
 }
 
@@ -286,13 +278,13 @@ body {
 #middle_game {
 	position: relative;
 	float: left;
-	margin-left: 20px;
+	margin-left: 30px;
 
-	width: 1000px;
-	height: 910px;
+	width: 800px;
+	height: 764px;
 
-	/* margin-right:30px; */
-	margin-top: 15px;
+	margin-right: 30px;
+	margin-top: 20px;
 	border: 5px solid #fff;
 	box-sizing: border-box;
 	border-radius: 10px;
@@ -303,8 +295,8 @@ body {
 /* 遊戲開始倒數 */
 #number {
 	position: absolute;
-	left: 400px;
-	top: 65px;
+	left: 320px;
+	top: 52px;
 	/* transform: translate(-54%, -48%); */
 	font-family: '俐方體11號';
 	color: #ff79a4;
@@ -342,6 +334,8 @@ body {
 
 #gameBox2_map01,
 #gameBox1_map01 {
+	width: 800px;
+	height: 764px;
 	display: none;
 	user-select: none;
 	-webkit-user-drag: none;
@@ -358,32 +352,32 @@ body {
 
 #map01_21_img {
 	position: absolute;
-	top: 464px;
-	left: 145px;
+	top: 445px;
+	left: 144px;
 	user-select: none;
 	-webkit-user-drag: none;
 }
 
 #map01_22_img {
 	position: absolute;
-	top: 671px;
-	left: 339px;
+	top: 644px;
+	left: 337px;
 	user-select: none;
 	-webkit-user-drag: none;
 }
 
 #map01_23_img {
 	position: absolute;
-	top: 578px;
-	left: 702px;
+	top: 554px;
+	left: 701px;
 	user-select: none;
 	-webkit-user-drag: none;
 }
 
 #map01_24_img {
 	position: absolute;
-	top: 359px;
-	left: 392px;
+	top: 341px;
+	left: 390px;
 	user-select: none;
 	-webkit-user-drag: none;
 }
@@ -406,7 +400,7 @@ body {
 }
 
 .willyBox img {
-	width: 100%;
+	width: 80%;
 }
 
 /* woman 大小 */
@@ -417,7 +411,7 @@ body {
 }
 
 .womanBox img {
-	width: 100%;
+	width: 80%;
 }
 
 /* old 大小 */
@@ -429,7 +423,7 @@ body {
 }
 
 .oldBox img {
-	width: 100%;
+	width: 80%;
 }
 
 /* willy dog 大小 */
@@ -439,19 +433,18 @@ body {
 }
 
 .dogBox img {
-	width: 100%;
+	width: 80%;
 }
 
 /* 右邊 */
 .right {
 	box-sizing: border-box;
 	width: 240px;
-	height: 910px;
+	height: 955px;
 	/* background-color: #ff79a4; */
-	float: left;
-	margin-top: 15px;
-	margin-left: 20px;
-	/* margin-right: 20px; */
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
 	border: 5px solid #fff;
 	border-radius: 10px;
 	background-color: wheat;
@@ -471,7 +464,7 @@ body {
 .box {
 	position: relative;
 	width: 200px;
-	height: 190px;
+	height: 200px;
 	background-color: #d8d8d8;
 	background-color: #ffffff;
 	float: right;

@@ -4,14 +4,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>威力在哪?(會走的威力)</title>
+  <title>尋找！威力在哪裡?</title>
 
+  <link rel="icon" href="./image/Willy_logo.png">
   <!-- icon CSS -->
   <link rel="stylesheet" href="./CSS/all.min.css">
 
   <!-- 我的 CSS -->
   <!-- <link rel="stylesheet" href="./CSS/style.css"> -->
-  <link rel="stylesheet" href="./CSS/copy01.css">
+  <link rel="stylesheet" href="./CSS/style.css">
 
   <style>
     @font-face {
@@ -115,7 +116,8 @@
           <div id="gameBox1">
             <!-- mpa01 -->
             <div id="gameBox1_map01">
-              <img src="./image/map01_1.png" id="map01_1_img">
+              <!-- <img src="./image/map01_1.png" id="map01_1_img"> -->
+
             </div>
             <div id="gameBox1_role"></div>
 
@@ -393,8 +395,28 @@
 
     score = 0
     $('#score_number').text(score)
-    time = 7
+
+
+    time = 20
     $('#time_number').text(time)
+
+
+    if (0 < score < 10) {
+      $('#score_number').css('left', '204px')
+    }
+
+    // 為什麼 < 0 時為什麼位置不會移動
+    if (score < 0) {
+      $('#score_number').css('left', '10px')
+    }
+
+    if (time < 10) {
+      $('#time_number').css('left', '204px')
+    }
+
+
+
+
 
 
     $('#map_btn_R').attr('disabled', true)
@@ -543,6 +565,24 @@
       // 開始遊戲 為什麼老師示範是前面變數設為 let timer = 0 ?
       let begin = setInterval(() => {
         time--
+        if (0 < score < 10) {
+          $('#score_number').css('left', '204px')
+        } else if (score < 0) {
+          $('#score_number').css('left', '15px')
+        } else {
+          $('#score_number').css('left', '190px')
+        }
+
+        if (time < 10) {
+          $('#time_number').css('left', '204px')
+        } else {
+          $('#time_number').css('left', '190px')
+
+        }
+
+
+
+
         $('#time_number').text(time)
 
         // 符合條件時：最多8個 每秒產生的 willy
@@ -664,6 +704,10 @@
           // 把版面數字歸零
           $('#score_number').text('00')
           $('#time_number').text('00')
+
+          // 倒數與分數回歸
+          $('#score_number').css('left', '190px')
+          $('#time_number').css('left', '190px')
 
 
 
