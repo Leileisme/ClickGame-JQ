@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>尋找！威力在哪裡?</title>
+  <title>尋找！威利
+    在哪裡?</title>
 
   <link rel="icon" href="./image/Willy_logo.png">
   <!-- icon CSS -->
@@ -98,34 +99,31 @@
             <img src="./image/map01_22.png" id="map01_22_img">
             <img src="./image/map01_23.png" id="map01_23_img">
             <img src="./image/map01_24.png" id="map01_24_img">
+
+            <!--  map01 第二層的遮蔽(車) -->
             <div id="map01_cantClickBox2">
+              <!-- 灰車 -->
               <div id="cantClickBox2_1"></div>
               <div id="cantClickBox2_2"></div>
               <div id="cantClickBox2_3"></div>
               <div id="cantClickBox2_4"></div>
-
+              <!-- 黃紅車 -->
               <div id="cantClickBox2_5"></div>
               <div id="cantClickBox2_6"></div>
               <div id="cantClickBox2_7"></div>
               <div id="cantClickBox2_8"></div>
               <div id="cantClickBox2_9"></div>
-
+              <!-- 綠車 -->
               <div id="cantClickBox2_10"></div>
               <div id="cantClickBox2_11"></div>
-
+              <!-- 藍車 -->
               <div id="cantClickBox2_12"></div>
               <div id="cantClickBox2_13"></div>
-              <div id="cantClickBox2_14"></div>
-              <div id="cantClickBox2_15"></div>
-
             </div>
           </div>
 
           <div id="gameBox2_role">
           </div>
-
-          <!-- map02 -->
-
 
           <div id="gameBox1">
             <!-- mpa01 -->
@@ -133,6 +131,8 @@
               <img src="./image/map01_1.png" id="map01_1_img">
               <!-- svg檔還是不行欸?? -->
               <!-- <img src="./image/map01_1.svg" id="map01_1_img"> -->
+
+              <!-- 地圖遮蔽物 -->
               <div id="map01_cantClickBox1">
                 <div id="cantClick1"></div>
                 <div id="cantClick2"></div>
@@ -145,17 +145,13 @@
                 <div id="cantClick9"></div>
                 <div id="cantClick10"></div>
               </div>
-
             </div>
-            <div id="gameBox1_role"></div>
 
-            <!-- map02 -->
+            <div id="gameBox1_role"></div>
 
           </div>
         </div>
 
-
-        <!-- <div class="willyBox"><img src="./image/Willy_02.png"></div> -->
       </div>
     </div>
 
@@ -240,11 +236,33 @@
 
 <script>
 
+  //   Swal.fire({
+  //     imageUrl: "./image/willyFamily.jpg",
+  //     imageWidth: 600,
+  //     title: '尋找！威利在哪裡?',
+  //     html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
+  // 小心~~~不要認錯人囉！
+
+  // 【通緝角色】：除了「威力」還有其他人物喔！
+  // 【選擇地圖】：選好地圖後，按「Start」開始！
+  // 【彩蛋】：將不定時解鎖左方「小工具們」唷！</pre>`,
+  //     allowOutsideClick: false,
+  //     allowEscapeKey: false
+  //   })
+
+
+
   let map_btn = 1
   let score = 0
   let time = 0
   // 開始前倒數
   let countdown_number = 3
+
+
+  // 工具的監聽開關
+  let tool_btn = [false, false, false]
+
+
 
 
   //  把3張地圖最高分 變成陣列
@@ -264,7 +282,6 @@
       score: '00'
     },
   ]
-
 
   // 把保存在本地端的最高分叫出來
   // 用 i 來跑出 high_map1、 high_map2、 high_map3
@@ -378,6 +395,15 @@
     $('#btn').css('backgroundColor', '#ccc')
     $('#btn').css('border', '3px solid #ddd')
     $('#btn').css('top', '450px')
+
+    // 工具失效+樣式
+    $('.tool').each((index, el) => {
+      if (tool_btn[index] === false) {
+        $(` #t${index + 1}`).css('backgroundColor', '#ccc')
+        $(` #t${index + 1}`).css('border', '#ddd 1px solid')
+        $(el).css('color', '#fff')
+      }
+    });
 
     // 分數
     score = 0
@@ -566,7 +592,7 @@
         // 符合條件時：最多8個 每秒產生的 willy
         const random_willy = Math.ceil(Math.random() * 10)
 
-        if (random_willy > 1 && $('.willyBox').length < 80) {
+        if (random_willy > 5 && $('.willyBox').length < 8) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -611,7 +637,7 @@
         // 符合條件時：最多2個  每秒產生的  old
         const random_old = Math.ceil(Math.random() * 10)
 
-        if (random_old > 9 && ('.womanBox').length < 2) {
+        if (random_old > 9 && ('.oldBox').length < 2) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -625,7 +651,7 @@
             left = `calc(${left} - 30px)`
           }
 
-          const old = $(`<div class="dogBox" style="top:${top} ; left:${left};"><img src="./image/old.png" ></div>`)
+          const old = $(`<div class="oldBox" style="top:${top} ; left:${left};"><img src="./image/old.png" ></div>`)
           $(`#gameBox${gameBoxNumber}_role`).append(old)
         }
 
@@ -633,7 +659,7 @@
         // 符合條件時：最多2個  每秒產生的  dog 
         const random_dog = Math.ceil(Math.random() * 10)
 
-        if (random_dog > 8 && ('.womanBox').length < 3) {
+        if (random_dog > 8 && ('."dogBox').length < 3) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -651,6 +677,18 @@
           $(`#gameBox${gameBoxNumber}_role`).append(willy_dog)
         }
 
+        // 小工具隨機啟用
+        const random_tool = Math.ceil(Math.random() * 10)
+        const random_toolType = Math.floor(Math.random() * 3)
+
+        if (random_tool > 1) {
+          tool_btn[random_toolType] = true
+        }
+
+
+        if (tool_btn[random_toolType] === true) {
+          $(`#t${random_toolType + 1}`).css('backgroundColor', '#fff').css('border', '#ddd 0px solid').css('color', '#000')
+        }
 
 
 
@@ -662,6 +700,14 @@
           $('#btn').css('backgroundColor', '#ff79a4')
           $('#btn').css('border', '0px')
           $('#btn').css('top', '450px')
+
+          // 小工具樣式恢復
+          $('.tool').each((index, el) => {
+            $(` #t${index + 1}`).css('backgroundColor', '#fff')
+            $(` #t${index + 1}`).css('border', '#ddd 0px solid')
+            $(el).css('color', '#000')
+          });
+
 
           // 開始鈕+地圖選擇器 開
           $(this).attr('disabled', false)
@@ -695,17 +741,21 @@
           if (map_btn) {
             if (score > high_map[map_btn].score) {
               Swal.fire({
-                icon: 'success',
-                title: '時間到',
-                text: `最高分誕生！你得到${score}分`,
+                // icon: 'success',
+                imageUrl: "./image/Willy_logo_big.png",
+                imageWidth: 500,
+                // imageHeight: 200,
+                imageAlt: "Willy image",
+                title: '你是最高分',
+                html: ` <pre class="fire_html"> 恭喜~得到 ${score} 分！<pre>`,
                 input: 'text',
                 inputAttributes: {
                   required: true
                 },
                 // 玩家輸入名字
-                inputPlaceholder: '請輸入的名字',
+                inputPlaceholder: '請輸入的名字(3字內)',
                 // 驗證錯誤時的文字
-                validationMessage: '請輸入的名字',
+                validationMessage: '請輸入的名字(3字內)',
                 allowOutsideClick: false,
                 allowEscapeKey: false
               }).then(function (result) {
@@ -721,8 +771,10 @@
               })
             } else {
               Swal.fire({
-                title: '時間到',
-                text: `你得到${score}分`
+                imageUrl: "./image/willy_dog.png",
+                imageWidth: 380,
+                title: '哎呀!時間到溜~',
+                html: `<pre class="fire_lose">你得到 ${score} 分</pre>`
               })
             }
           }
@@ -730,7 +782,91 @@
       }, 1000)
     }, 3000)
   })
-  // }
+
+
+  $('#t1').click(function () {
+    if (tool_btn[0] === true) {
+      tool_btn[0] = false
+      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
+      $('.dogBox').css('width', '65px')
+    }
+    setTimeout(() => {
+      $('.dogBox').css('width', '35px')
+    }, 2000)
+  })
+
+  // 角色的隨機數
+  const toolRoleNumber = function () {
+    return Math.floor(Math.random() * 4)
+  }
+
+  // 隨機出現的依據
+  const random_role = () => {
+    return Math.ceil(Math.random() * 10)
+  }
+
+  // #t2的發亮
+  let toolRole01 = ['WillyBox', 'womanBox', 'oldBox', 'dogBox']
+  // 產生隨機角色
+  let toolRole02 = ['Willy_01', 'woman', 'old', 'willy_dog']
+
+
+
+
+  // 可動 待更新樣式
+  $('#t2').click(function () {
+    if (tool_btn[1] === true) {
+      tool_btn[1] = false
+      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
+
+      $(`.${toolRole01[toolRoleNumber()]}`).css('box-shadow', '0 0 10px rgb(255, 255, 0)')
+    }
+  })
+
+
+  // 有問題待確認
+  $('#t3').click(function () {
+    if (tool_btn[2] === true) {
+      tool_btn[2] = false
+      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
+      let i = 0
+      i++
+      let doIt = toolRoleNumber()
+      if (doIt) {
+        let roleImg = toolRole02[toolRoleNumber()]
+
+        const makeRole = setInterval(() => {
+          if (random_role() > 5) {
+            const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
+            const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
+            let top = Math.round(Math.random() * 100) + '%'
+            let left = Math.round(Math.random() * 100) + '%'
+
+            const gameBoxNumber = Math.floor(Math.random() * 3)
+
+            if (overTop.includes(top)) {
+              top = `calc(${top} - 68px)`
+            }
+            if (overLeft.includes(left)) {
+              left = `calc(${left} - 30px)`
+            }
+
+            const role = $(`<div class=role_doIt${i}" style="top:${top} ; left:${left};"><img src="./image/${roleImg}.png"></div>`)
+            $(`#gameBox${gameBoxNumber}_role`).append(role)
+          }
+        }, 100);
+      }
+
+      setTimeout(makeRole, 3000)
+      setTimeout = (() => {
+        $(`.role_doIt${i}`).css('display', none)
+      }, 3000)
+    }
+  })
+
+
+
+
 
   // 點擊得分
   $('#game').on('click', '.willyBox', function () {

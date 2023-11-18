@@ -2,6 +2,36 @@ body {
   background-color: #333;
 }
 
+.swal2-image {
+  /* margin-left: 48px; */
+  margin-bottom: -3px;
+}
+
+.swal2-title {
+  color: #000000;
+  font-family: '俐方體11號';
+  margin-bottom: -25px;
+}
+
+.fire_html {
+  font-family: '俐方體11號';
+  font-weight: 900;
+  margin-bottom: -10px;
+}
+
+.swal2-input {
+  font-family: '俐方體11號';
+  width: 300px;
+  margin: auto;
+}
+
+.fire_lose {
+  font-family: '俐方體11號';
+  margin-top: 20px;
+}
+
+/* 畫面內容(上面是Swal) */
+
 #content {
   position: absolute;
   left: 50%;
@@ -274,7 +304,7 @@ body {
 }
 
 .tool {
-  width: 100px;
+  width: 105px;
   height: 80px;
   box-shadow: 5px 7px 1px #aaa;
   background-color: #fff;
@@ -297,13 +327,13 @@ body {
 
 #t2 {
   position: absolute;
-  left: 165px;
+  left: 162.5px;
   line-height: 100px;
 }
 
 #t3 {
   position: absolute;
-  left: 290px;
+  left: 285px;
   line-height: 100px;
 }
 
@@ -743,6 +773,7 @@ body {
 
 .dogBox img {
   width: 100%;
+
 }
 
 /* 右邊 */
@@ -895,7 +926,7 @@ body {
   position: absolute;
   /* top: 15px; */
   top: 18px;
-  left: 65px;
+  left: 64px;
 }
 
 /* 角色分數 */
