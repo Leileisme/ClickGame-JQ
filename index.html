@@ -29,6 +29,7 @@
 
 <body>
 
+
   <div id="content">
 
 
@@ -43,12 +44,6 @@
 
       <!-- 開始按鈕 -->
       <input id="btn" type="button" value="Start">
-
-      <!-- <label id="#btn" for="starBtn">
-      <div id="btn">Start</div>
-    </label> -->
-
-      <!-- <input type="button" id="starBtn"> -->
 
       <!-- 分數/時間 -->
       <div id="score"> 分　數：<span id="score_number">00</span> 　　分</div>
@@ -68,16 +63,14 @@
       <div id="high">
 
         <!-- 這邊想切換 map 不同最高分 -->
-        <span class="highScore">最高分：
-          <span id="highScoreNumber_map01">00</span>
-          <span id="highScoreNumber_map02">00</span>
-          <span id="highScoreNumber_map03">00</span>
-          分 /
-          <span id="highName_map01">???</span>
-          <span id="highName_map02">???</span>
-          <span id="highName_map03">???</span>
-        </span>
-
+        <div class="highScore">最高分： </div>
+        <div id="highScoreNumber_map01">00</div>
+        <div id="highScoreNumber_map02">00</div>
+        <div id="highScoreNumber_map03">00</div>
+        <div id="ScoreWord">分 /</div>
+        <div id="highName_map01">???</div>
+        <div id="highName_map02">???</div>
+        <div id="highName_map03">???</div>
 
 
       </div>
@@ -105,6 +98,27 @@
             <img src="./image/map01_22.png" id="map01_22_img">
             <img src="./image/map01_23.png" id="map01_23_img">
             <img src="./image/map01_24.png" id="map01_24_img">
+            <div id="map01_cantClickBox2">
+              <div id="cantClickBox2_1"></div>
+              <div id="cantClickBox2_2"></div>
+              <div id="cantClickBox2_3"></div>
+              <div id="cantClickBox2_4"></div>
+
+              <div id="cantClickBox2_5"></div>
+              <div id="cantClickBox2_6"></div>
+              <div id="cantClickBox2_7"></div>
+              <div id="cantClickBox2_8"></div>
+              <div id="cantClickBox2_9"></div>
+
+              <div id="cantClickBox2_10"></div>
+              <div id="cantClickBox2_11"></div>
+
+              <div id="cantClickBox2_12"></div>
+              <div id="cantClickBox2_13"></div>
+              <div id="cantClickBox2_14"></div>
+              <div id="cantClickBox2_15"></div>
+
+            </div>
           </div>
 
           <div id="gameBox2_role">
@@ -116,7 +130,21 @@
           <div id="gameBox1">
             <!-- mpa01 -->
             <div id="gameBox1_map01">
-              <!-- <img src="./image/map01_1.png" id="map01_1_img"> -->
+              <img src="./image/map01_1.png" id="map01_1_img">
+              <!-- svg檔還是不行欸?? -->
+              <!-- <img src="./image/map01_1.svg" id="map01_1_img"> -->
+              <div id="map01_cantClickBox1">
+                <div id="cantClick1"></div>
+                <div id="cantClick2"></div>
+                <div id="cantClick3"></div>
+                <div id="cantClick4"></div>
+                <div id="cantClick5"></div>
+                <div id="cantClick6"></div>
+                <div id="cantClick7"></div>
+                <div id="cantClick8"></div>
+                <div id="cantClick9"></div>
+                <div id="cantClick10"></div>
+              </div>
 
             </div>
             <div id="gameBox1_role"></div>
@@ -191,8 +219,6 @@
           </span>
         </div>
 
-
-
       </div>
 
 
@@ -201,8 +227,9 @@
 
 
 
-
     </div>
+
+
 </body>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
   integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
@@ -213,27 +240,18 @@
 
 <script>
 
-
+  let map_btn = 1
   let score = 0
   let time = 0
+  // 開始前倒數
   let countdown_number = 3
-  let high_map01 = {
-    name: '???',
-    score: '00'
-  }
-
-  let high_map02 = {
-    name: '???',
-    score: '00'
-  }
 
 
-  let high_map03 = {
-    name: '???',
-    score: '00'
-  }
-
+  //  把3張地圖最高分 變成陣列
   let high_map = [
+    {
+      // 為了讓map數字統一，放一個空的
+    },
     {
       name: '???',
       score: '00'
@@ -247,50 +265,20 @@
     },
   ]
 
-  let map_btn = 1
-
 
   // 把保存在本地端的最高分叫出來
-  if (map_btn === 1) {
-    if (localStorage.highest_map01) {
-      const data = JSON.parse(localStorage.highest_map01)
-      high_map01.name = data.name
-      high_map01.score = data.score
-      $('#highName_map01').text(high_map01.name)
-      $('#highScoreNumber_map01').text(high_map01.score)
+  // 用 i 來跑出 high_map1、 high_map2、 high_map3
+
+  for (i = 1; i < 4; i++) {
+    if (localStorage[`highest_map${i}`]) {
+      const data = JSON.parse(localStorage[`highest_map${i}`])
+      high_map[i].score = data.score
+      high_map[i].name = data.name
+      $(`#highScoreNumber_map0${i}`).text(high_map[i].score)
+      $(`#highName_map0${i}`).text(high_map[i].name)
+
     }
   }
-
-
-  if (map_btn === 2) {
-    if (localStorage.highest_map02) {
-      const data = JSON.parse(localStorage.highest_map02)
-      high_map02.name = data.name
-      high_map02.score = data.score
-      $('#highName_map02').text(high_map02.name)
-      $('#highScoreNumber_map02').text(high_map02.score)
-    }
-  }
-
-  if (map_btn === 3) {
-    if (localStorage.highest_map01) {
-      const data = JSON.parse(localStorage.highest_map03)
-      high_map03.name = data.name
-      high_map03.score = data.score
-      $('#highName_map03').text(high_map03.name)
-      $('#highScoreNumber_map03').text(high_map03.score)
-    }
-  }
-
-
-  // if (localStorage.high) {
-  //   const date = JSON.parse(localStorage.high)
-  //   high.name = date.name
-  //   high.score = date.score
-  //   $('#humanH').text(high.name)
-  //   $('#scoreH').text(high.score)
-  // }
-
 
   // 觀看1分角色
   let willy_btn = 1
@@ -352,6 +340,7 @@
     }
   })
 
+
   $('#map_btn_L').click(function () {
     if (map_btn > 1) {
       map_btn -= 1
@@ -378,53 +367,39 @@
   })
 
 
-  // 這邊 個位數 如何置右?
+
 
   // function btnBoxClickEvent() {
   $('#btn').click(function () {
     // 初始畫面
 
-    // why label input 無效?
+    // 開始按鈕失效+樣式
     $(this).attr('disabled', true)
-
-
-
     $('#btn').css('backgroundColor', '#ccc')
     $('#btn').css('border', '3px solid #ddd')
     $('#btn').css('top', '450px')
 
+    // 分數
     score = 0
     $('#score_number').text(score)
-
-
-    time = 20
+    // 時間
+    time = 99
     $('#time_number').text(time)
 
-
+    //  「時間與分數」個位數的位置(為什麼 < 0 時為什麼位置不會移動)
     if (0 < score < 10) {
       $('#score_number').css('left', '204px')
     }
-
-    // 為什麼 < 0 時為什麼位置不會移動
-    if (score < 0) {
-      $('#score_number').css('left', '10px')
-    }
-
     if (time < 10) {
       $('#time_number').css('left', '204px')
     }
 
-
-
-
-
-
+    // 選取地圖的按鈕失效
     $('#map_btn_R').attr('disabled', true)
     $('#map_btn_L').attr('disabled', true)
 
-    // 開始前3秒
 
-
+    // 開始前3秒 (畫面倒數)
     $('#game_img').attr('src', `./image/WhereWilly04.png`)
     $('#number').css('display', `block`)
     $('#number').css('fontSize', `350px`)
@@ -440,6 +415,7 @@
       }
     }, 1000)
 
+    // 清除「開始前3秒」的 setInterval
     setTimeout(() => {
       clearInterval(countdown)
     }, 2000)
@@ -447,20 +423,20 @@
 
     // 3秒後進入遊戲，在每秒產生 willy前，先放一些在圖上，免得跳出 willy 時很好找
     setTimeout(() => {
+      // 換遊戲地圖
       $('#game_img').attr('src', `./image/map0${map_btn}.jpg`)
+      // 「開始前3秒」數字消失
       $('#number').css('display', `none`)
+      // 靶心
+      $('#game').css('cursor', 'url(./image/cursor_black.png) 50 50, auto')
 
-      if (map_btn === 1) {
-        $(`#gameBox1_map01`).css('display', 'block')
-        $(`#gameBox2_map01`).css('display', 'block')
+      // 地圖1的場地設置
+      if (map_btn) {
+        $(`#gameBox1_map0${map_btn}`).css('display', 'block')
+        $(`#gameBox2_map0${map_btn}`).css('display', 'block')
       }
 
-      // $('#game').css('cursor', 'url(./image/cursor_black.png)')
-
-
-
-      // 設定 willy 隨機出現，若超過 game 範圍則往內
-      // 但為什麼百分比老師的不會超過框框?
+      // 角色會超出範圍「百分比陣列」
       const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
       const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
 
@@ -504,7 +480,6 @@
         }
       })
 
-
       leftAll.forEach((left, index) => {
         if (overTop.includes(top)) {
           topAll[index] = `calc(${left} - 30px)`
@@ -520,7 +495,7 @@
         Math.ceil(Math.random() * 4),
       ]
 
-      //  隨機出現的地圖層
+      //  隨機出現的地圖層(地圖1：有3層 其他目前1層)
       const gameBoxNumber = [
         Math.floor(Math.random() * 3),
         Math.floor(Math.random() * 3),
@@ -569,6 +544,9 @@
           $('#score_number').css('left', '204px')
         } else if (score < 0) {
           $('#score_number').css('left', '15px')
+        } else if (score > 100) {
+          $('#score_number').css('left', '175px')
+
         } else {
           $('#score_number').css('left', '190px')
         }
@@ -577,17 +555,18 @@
           $('#time_number').css('left', '204px')
         } else {
           $('#time_number').css('left', '190px')
-
         }
-
-
-
 
         $('#time_number').text(time)
 
+        $('gameBox1_map01').css('display', 'block')
+        $('gameBox2_map01').css('display', 'block')
+
+        // 每秒(可能)產生新角色
         // 符合條件時：最多8個 每秒產生的 willy
         const random_willy = Math.ceil(Math.random() * 10)
-        if (random_willy > 5 && $('.willyBox').length < 8) {
+
+        if (random_willy > 1 && $('.willyBox').length < 80) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -608,10 +587,10 @@
         }
 
 
-        // 符合條件時：最多3個  每秒產生的 woman
+        // 符合條件時：最多4個  每秒產生的 woman
         const random_woman = Math.ceil(Math.random() * 10)
 
-        if (random_woman > 5 && ('.womanBox').length < 3) {
+        if (random_woman > 5 && ('.womanBox').length < 4) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -629,8 +608,7 @@
           $(`#gameBox${gameBoxNumber}_role`).append(woman)
         }
 
-        // 符合條件時：最多1個  每秒產生的  old
-
+        // 符合條件時：最多2個  每秒產生的  old
         const random_old = Math.ceil(Math.random() * 10)
 
         if (random_old > 9 && ('.womanBox').length < 2) {
@@ -653,7 +631,6 @@
 
 
         // 符合條件時：最多2個  每秒產生的  dog 
-
         const random_dog = Math.ceil(Math.random() * 10)
 
         if (random_dog > 8 && ('.womanBox').length < 3) {
@@ -698,8 +675,9 @@
 
           // 放回封面圖
           $('#game_img').attr('src', `./image/WhereWilly03.png`)
-          $(`#gameBox1_map01`).css('display', 'none')
-          $(`#gameBox2_map01`).css('display', 'none')
+          $('#gameBox1_map01').css('display', 'none')
+          $('#gameBox2_map01').css('display', 'none')
+
 
           // 把版面數字歸零
           $('#score_number').text('00')
@@ -709,10 +687,13 @@
           $('#score_number').css('left', '190px')
           $('#time_number').css('left', '190px')
 
+          // 標靶消失
+          $('#game').css('cursor', 'auto')
 
 
-          if (map_btn === 1) {
-            if (score > high_map01.score) {
+
+          if (map_btn) {
+            if (score > high_map[map_btn].score) {
               Swal.fire({
                 icon: 'success',
                 title: '時間到',
@@ -729,11 +710,14 @@
                 allowEscapeKey: false
               }).then(function (result) {
                 console.log(result)
-                high_map01.score = score
-                high_map01.name = result.value
-                $('#highScoreNumber_map01').text(high_map01.score)
-                $('#highName_map01').text(high_map01.name)
-                localStorage.highest_map01 = JSON.stringify(high_map01)
+                high_map[map_btn].score = score
+                high_map[map_btn].name = result.value
+
+                $(`#highScoreNumber_map0${map_btn}`).text(high_map[map_btn].score)
+                $(`#highName_map0${map_btn}`).text(high_map[map_btn].name)
+                // JSON.stringify：將JS的值 轉為 Json 字串
+                // localStorage.setItem(`highest_map${map_btn}`, JSON.stringify(high_map[map_btn]))
+                localStorage[`highest_map${map_btn}`] = JSON.stringify(high_map[map_btn])
               })
             } else {
               Swal.fire({
@@ -742,120 +726,13 @@
               })
             }
           }
-
-
-          if (map_btn === 2) {
-            if (score > high_map02.score) {
-              Swal.fire({
-                icon: 'success',
-                title: '時間到',
-                text: `最高分誕生！你得到${score}分`,
-                input: 'text',
-                inputAttributes: {
-                  required: true
-                },
-                // 玩家輸入名字
-                inputPlaceholder: '請輸入的名字',
-                // 驗證錯誤時的文字
-                validationMessage: '請輸入的名字',
-                allowOutsideClick: false,
-                allowEscapeKey: false
-              }).then(function (result) {
-                console.log(result)
-                high_map02.score = score
-                high_map02.name = result.value
-                $('#highScoreNumber_map02').text(high_map02.score)
-                $('#highName_map02').text(high_map02.name)
-                localStorage.highest_map02 = JSON.stringify(high_map02)
-              })
-            }
-            else {
-              Swal.fire({
-                title: '時間到',
-                text: `你得到${score}分`
-              })
-            }
-          }
-
-
-
-
-          if (map_btn === 3) {
-            if (score > high_map03.score) {
-              Swal.fire({
-                icon: 'success',
-                title: '時間到',
-                text: `最高分誕生！你得到${score}分`,
-                input: 'text',
-                inputAttributes: {
-                  required: true
-                },
-                // 玩家輸入名字
-                inputPlaceholder: '請輸入的名字',
-                // 驗證錯誤時的文字
-                validationMessage: '請輸入的名字',
-                allowOutsideClick: false,
-                allowEscapeKey: false
-              }).then(function (result) {
-                console.log(result)
-                high_map03.score = score
-                high_map03.name = result.value
-                $('#highScoreNumber_map03').text(high_map03.score)
-                $('#highName_map03').text(high_map03.name)
-                localStorage.highest_map02 = JSON.stringify(high_map03)
-              })
-            }
-            else {
-              Swal.fire({
-                title: '時間到',
-                text: `你得到${score}分`
-              })
-            }
-          }
-
-          // if (score > high.score) {
-          //   Swal.fire({
-          //     icon: 'success',
-          //     title: '時間到',
-          //     text: `最高分誕生！你得到${score}分`,
-          //     input: 'text',
-          //     inputAttributes: {
-          //       required: true
-          //     },
-          //     // 玩家輸入名字
-          //     inputPlaceholder: '請輸入的名字',
-          //     // 驗證錯誤時的文字
-          //     validationMessage: '請輸入的名字',
-          //     allowOutsideClick: false,
-          //     allowEscapeKey: false
-          //   }).then(function (result) {
-          //     console.log(result)
-          //     high.score = score
-          //     high.name = result.value
-
-
-
-
-          //   })
-          // }
-          // else {
-          //   Swal.fire({
-          //     title: '時間到',
-          //     text: `你得到${score}分`
-          //   })
-          // }
-
         }
-
       }, 1000)
-    }, 3000);
-
+    }, 3000)
   })
   // }
 
   // 點擊得分
-
-
   $('#game').on('click', '.willyBox', function () {
     $(this).stop()
     $(this).removeClass('willyBox').css('display', 'none')

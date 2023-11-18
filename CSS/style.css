@@ -180,6 +180,8 @@ body {
   font-weight: 600;
   padding-top: 7px;
   color: rgb(255, 118, 118);
+  /* 超過100分時 */
+  /* left: 175px; */
 }
 
 #time_number {
@@ -198,8 +200,8 @@ body {
 /* left - 紀錄保持人 */
 #high {
   width: 350px;
-  height: 50px;
-  line-height: 50px;
+  height: 57px;
+  /* line-height: 50px; */
   text-align: center;
   border-radius: 10px;
   box-shadow: 5px 7px 1px #aaa;
@@ -212,7 +214,9 @@ body {
   bottom: 18px;
   font-size: 30px;
   font-weight: 600;
-  padding-top: 7px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  /* padding-top: 12px; */
 }
 
 /* #highScoreNumber_map01,
@@ -222,6 +226,43 @@ body {
 #highScoreNumber_map03,
 #highName_map03 {
   display: none;
+}
+#high {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highScore {
+  width: 130px;
+  height: 30px;
+  /* border: 1px solid red; */
+}
+
+#highScoreNumber_map01,
+#highScoreNumber_map02,
+#highScoreNumber_map03 {
+  width: 50px;
+  height: 30px;
+  /* border: 1px solid red; */
+  margin-right: 5px;
+  margin-left: -1.5px;
+  overflow: hidden;
+}
+#ScoreWord {
+  width: 70px;
+  height: 30px;
+  /* border: 1px solid red; */
+}
+
+#highName_map01,
+#highName_map02,
+#highName_map03 {
+  width: 69px;
+  height: 30px;
+  /* border: 1px solid red; */
+  overflow: hidden;
+  margin-left: 2px;
 }
 
 /* left - 工具 */
@@ -328,8 +369,6 @@ body {
 }
 
 #game {
-  /* 以下為啥無效 */
-  cursor: url(../image/cursor_black.png) 50 50, auto;
   position: absolute;
   top: 0;
   left: 0;
@@ -337,6 +376,7 @@ body {
   height: 100%;
   user-select: none;
   -webkit-user-drag: none;
+  overflow: hidden;
 }
 
 /* map01放地圖區 */
@@ -348,6 +388,263 @@ body {
   -webkit-user-drag: none;
 }
 
+/* map01 第一層的遮蔽 */
+#map01_cantClickBox1 {
+  opacity: 0;
+}
+
+#cantClick1 {
+  position: absolute;
+  bottom: 0;
+  width: 770px;
+  height: 122px;
+  background-color: #ff0000;
+  opacity: 0.4;
+}
+#cantClick2 {
+  position: absolute;
+  bottom: 0;
+  left: 770px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 122px 0 0 125px;
+  border-color: transparent transparent transparent #007bff;
+  opacity: 0.5;
+}
+#cantClick3 {
+  position: absolute;
+  top: 550px;
+  left: 0px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 40px 0 0 145px;
+  border-color: transparent transparent transparent #007bff;
+  opacity: 0.5;
+}
+#cantClick4 {
+  position: absolute;
+  bottom: 0;
+  width: 140px;
+  height: 310px;
+  background-color: #00ff62;
+  opacity: 0.4;
+}
+#cantClick5 {
+  position: absolute;
+  bottom: 111px;
+  left: 150px;
+  width: 125px;
+  height: 50px;
+  background-color: #00ff62;
+  opacity: 0.7;
+}
+#cantClick6 {
+  position: absolute;
+  bottom: 115px;
+  left: 486px;
+  width: 106.5px;
+  height: 50px;
+  background-color: #00ff62;
+  opacity: 0.5;
+}
+#cantClick7 {
+  position: absolute;
+  bottom: 85px;
+  left: 732px;
+  width: 88px;
+  height: 55px;
+  background-color: #00ff62;
+  transform: rotate(30deg) skew(-30deg);
+  opacity: 0.5;
+}
+#cantClick8 {
+  position: absolute;
+  bottom: 37px;
+  left: 780px;
+  width: 60px;
+  height: 70px;
+  background-color: #0026ff;
+  opacity: 0.5;
+}
+#cantClick9 {
+  position: absolute;
+  bottom: 0px;
+  left: 860px;
+  width: 25px;
+  height: 50px;
+  background-color: #d400ff;
+  opacity: 0.5;
+}
+#cantClick10 {
+  position: absolute;
+  bottom: 335px;
+  left: 32px;
+  width: 15px;
+  height: 50px;
+  background-color: #d400ff;
+  opacity: 0.5;
+}
+
+/* map01 第二層的遮蔽(車) */
+#map01_cantClickBox2 {
+  opacity: 0;
+}
+
+/* 灰車 */
+#cantClickBox2_1 {
+  position: absolute;
+  top: 471px;
+  left: 190px;
+  border-radius: 20px;
+  width: 70px;
+  height: 60px;
+  background-color: violet;
+  opacity: 0.5;
+  transform: skew(-58deg) rotate(15deg);
+}
+#cantClickBox2_2 {
+  position: absolute;
+  top: 468px;
+  left: 178px;
+  border-radius: 20px;
+  width: 80px;
+  height: 55px;
+  background-color: rgb(146, 130, 238);
+  opacity: 0.5;
+  transform: skew(15deg);
+}
+#cantClickBox2_3 {
+  position: absolute;
+  top: 517px;
+  left: 200px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg);
+}
+#cantClickBox2_4 {
+  position: absolute;
+  top: 485px;
+  left: 260px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg);
+}
+
+/* 黃紅車 */
+#cantClickBox2_5 {
+  position: absolute;
+  top: 343px;
+  left: 502px;
+  border-radius: 15px;
+  width: 40px;
+  height: 187px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg) rotate(-240deg);
+}
+#cantClickBox2_6 {
+  position: absolute;
+  top: 375px;
+  left: 430px;
+  border-radius: 15px;
+  width: 60px;
+  height: 47px;
+  background-color: rgb(238, 204, 130);
+  opacity: 0.7;
+  transform: skew(1deg) rotate(10deg);
+}
+#cantClickBox2_7 {
+  position: absolute;
+  top: 365px;
+  left: 403px;
+  width: 0;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 0 42px 40px;
+  border-color: transparent transparent #007bff transparent;
+  opacity: 0.7;
+  transform: rotate(20deg);
+}
+#cantClickBox2_8 {
+  position: absolute;
+  top: 430px;
+  left: 560px;
+  width: 0;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 0 35px 38px;
+  border-color: transparent transparent #7bff00 transparent;
+  opacity: 0.7;
+  transform: rotate(-9deg);
+}
+#cantClickBox2_9 {
+  position: absolute;
+  top: 427px;
+  left: 550px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(247, 0, 152);
+  opacity: 0.7;
+  transform: rotate(-28deg) skew(10deg);
+  border-radius: 10px;
+}
+
+/* 綠車 */
+#cantClickBox2_10 {
+  position: absolute;
+  top: 674px;
+  left: 390px;
+  border-radius: 25px 20px 25px 15px;
+  width: 78px;
+  height: 68px;
+  background-color: rgb(146, 130, 238);
+  opacity: 0.7;
+  transform: skew(30deg);
+}
+#cantClickBox2_11 {
+  position: absolute;
+  top: 687px;
+  left: 338px;
+  border-radius: 50px 20px 25px 40px;
+  width: 78px;
+  height: 58px;
+  background-color: rgb(130, 238, 166);
+  opacity: 0.4;
+  /* transform: skew(30deg); */
+}
+
+/* 藍色 */
+#cantClickBox2_12 {
+  position: absolute;
+  top: 580px;
+  left: 705.5px;
+  border-radius: 100px 20px 50px 40px;
+  width: 82px;
+  height: 58px;
+  background-color: rgb(130, 238, 166);
+  opacity: 0.4;
+  transform: rotate(16deg);
+}
+#cantClickBox2_13 {
+  position: absolute;
+  top: 608px;
+  left: 750px;
+  border-radius: 0px 5px 45px 4px;
+  width: 60px;
+  height: 60px;
+  background-color: rgb(253, 2, 2);
+  opacity: 0.4;
+  transform: rotate(50deg);
+}
+
 /* 多層地圖的img */
 #map01_1_img {
   position: absolute;
@@ -355,6 +652,7 @@ body {
   width: 100%;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 #map01_21_img {
@@ -363,6 +661,7 @@ body {
   left: 145px;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 #map01_22_img {
@@ -371,6 +670,7 @@ body {
   left: 339px;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 #map01_23_img {
@@ -379,6 +679,7 @@ body {
   left: 702px;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 #map01_24_img {
@@ -387,6 +688,7 @@ body {
   left: 392px;
   user-select: none;
   -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 /* 遊戲區的 willy 大小 */
