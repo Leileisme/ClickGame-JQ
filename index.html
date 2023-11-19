@@ -51,9 +51,18 @@
       <div id="time"> 餘時間：<span id="time_number">00</span> 　　秒</div>
       <!-- 工具 -->
       <div id="tool_content">
-        <div class="tool" id="t1"><i class="fa-solid fa-magnifying-glass"></i></div>
-        <div class="tool" id="t2"><i class="fa-solid fa-wand-sparkles"></i></div>
-        <div class="tool" id="t3"><i class="fa-regular fa-circle-question"></i></div>
+        <div class="tool" id="t1">
+          <i class="fa-solid fa-magnifying-glass t_i" id="t1_i"></i>
+          <span id="t1_time" class="t_time"></span>
+        </div>
+        <div class="tool" id="t2">
+          <i class="fa-solid fa-wand-sparkles  t_i" id="t2_i"></i>
+          <span id="t2_time" class="t_time"></span>
+        </div>
+        <div class="tool" id="t3">
+          <i class="fa-regular fa-circle-question  t_i" id="t3_i"></i>
+          <span id="t3_time" class="t_time"></span>
+        </div>
 
 
       </div>
@@ -259,8 +268,11 @@
   let countdown_number = 3
 
 
-  // 工具的監聽開關
+  // 監聽：小工具是否開啟
   let tool_btn = [false, false, false]
+  // 監聽：小工具是否進行中 進行中不能再開啟
+  let tool_btn_doing = [false, false, false]
+
 
 
 
@@ -397,19 +409,23 @@
     $('#btn').css('top', '450px')
 
     // 工具失效+樣式
-    $('.tool').each((index, el) => {
-      if (tool_btn[index] === false) {
-        $(` #t${index + 1}`).css('backgroundColor', '#ccc')
-        $(` #t${index + 1}`).css('border', '#ddd 1px solid')
-        $(el).css('color', '#fff')
-      }
-    });
+    $('.tool').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+    $(`.t_i`).css('color', '#fff')
+
+
+    // $('.tool').each((index, el) => {
+    //   if (tool_btn[index] === false) {
+    //     $(` #t${index + 1}`).css('backgroundColor', '#ccc')
+    //     $(` #t${index + 1}`).css('border', '#ddd 1px solid')
+    //     $(el).css('color', '#fff')
+    //   }
+    // });
 
     // 分數
     score = 0
     $('#score_number').text(score)
     // 時間
-    time = 99
+    time = 10
     $('#time_number').text(time)
 
     //  「時間與分數」個位數的位置(為什麼 < 0 時為什麼位置不會移動)
@@ -681,16 +697,23 @@
         const random_tool = Math.ceil(Math.random() * 10)
         const random_toolType = Math.floor(Math.random() * 3)
 
-        if (random_tool > 1) {
+        if (random_tool > 1 && tool_btn[random_toolType] === false && tool_btn_doing[random_toolType] === false) {
           tool_btn[random_toolType] = true
         }
 
 
         if (tool_btn[random_toolType] === true) {
-          $(`#t${random_toolType + 1}`).css('backgroundColor', '#fff').css('border', '#ddd 0px solid').css('color', '#000')
+          $(`#t${random_toolType + 1}`).css('backgroundColor', '#fff').css('border', '#ddd 0px solid')
+          $(`#t${random_toolType + 1}_i`).css('color', '#000')
         }
 
 
+        for (let i = 0; i < 3; i++) {
+          if (tool_btn[i] === false && tool_btn_doing[i] === false) {
+            $(`#t${i + 1}`).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+            $(`#t${i + 1}_i`).css('color', '#fff')
+          }
+        }
 
 
         // 時間到之後
@@ -702,11 +725,13 @@
           $('#btn').css('top', '450px')
 
           // 小工具樣式恢復
-          $('.tool').each((index, el) => {
-            $(` #t${index + 1}`).css('backgroundColor', '#fff')
-            $(` #t${index + 1}`).css('border', '#ddd 0px solid')
-            $(el).css('color', '#000')
-          });
+          for (let i = 0; i < 3; i++) {
+            (tool_btn[i] = false)
+          }
+
+          $('.tool').css('backgroundColor', '#fff').css('border', '#ddd 0px solid')
+          $(`.t_time`).css('display', 'none')
+          $(`.t_i`).css('color', '#000')
 
 
           // 開始鈕+地圖選擇器 開
@@ -783,17 +808,11 @@
     }, 3000)
   })
 
+  // 隨機啟用的秒數
+  const randomDoTime = function () {
+    return Math.ceil(Math.random() * 3)
+  }
 
-  $('#t1').click(function () {
-    if (tool_btn[0] === true) {
-      tool_btn[0] = false
-      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
-      $('.dogBox').css('width', '65px')
-    }
-    setTimeout(() => {
-      $('.dogBox').css('width', '35px')
-    }, 2000)
-  })
 
   // 角色的隨機數
   const toolRoleNumber = function () {
@@ -806,69 +825,185 @@
   }
 
   // #t2的發亮
-  let toolRole01 = ['WillyBox', 'womanBox', 'oldBox', 'dogBox']
+  let toolRole01 = ['willyBox', 'womanBox', 'oldBox', 'dogBox']
   // 產生隨機角色
   let toolRole02 = ['Willy_01', 'woman', 'old', 'willy_dog']
 
 
 
 
-  // 可動 待更新樣式
-  $('#t2').click(function () {
-    if (tool_btn[1] === true) {
-      tool_btn[1] = false
-      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
 
-      $(`.${toolRole01[toolRoleNumber()]}`).css('box-shadow', '0 0 10px rgb(255, 255, 0)')
+  $('#t1').click(function () {
+    if (tool_btn[0] === true) {
+      tool_btn[0] = false
+      tool_btn_doing[0] = true
+      let toolRoleNumber01 = toolRoleNumber()
+      let randomDoTime01 = randomDoTime()
+
+      $(`.${toolRole01[toolRoleNumber01]}`).css('width', '65px')
+      $(`#t1_i`).css('color', '#ccc')
+      $('#t1_time').css('display', 'block').text(randomDoTime01)
+
+
+      // #t1 小工具倒數
+      const t1_time = setInterval(() => {
+        randomDoTime01--
+        $('#t1_time').text(randomDoTime01)
+        console.log('倒數', randomDoTime01)
+      }, 1000)
+
+      const t1_timeOut = setTimeout(() => {
+        clearInterval(t1_time)
+        tool_btn_doing[0] = false
+        $('#t1_time').css('display', 'none')
+        // $('#t1').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        // $(`#t1_i`).css('color', '#fff')
+
+        if (toolRoleNumber01 === 3) {
+          $(`.${toolRole01[toolRoleNumber01]}`).css('width', '35px')
+        } else {
+          $(`.${toolRole01[toolRoleNumber01]}`).css('width', '30px')
+        }
+      }, randomDoTime01 + '000')
+    } else {
+      return
     }
   })
 
+
+
+  // 發亮
+  $('#t2').click(function () {
+    if (tool_btn[1] === true) {
+      tool_btn[1] = false
+      tool_btn_doing[1] = true
+      let toolRoleNumber01 = toolRoleNumber()
+      let randomDoTime01 = randomDoTime()
+
+      $(`.${toolRole01[toolRoleNumber01]}`).css('border-radius', '50%').css('background', 'rgba(255,255,0,0.5)').css('box-shadow', '0 0 10px rgb(255, 255, 0)')
+      $(`#t2_i`).css('color', '#ccc')
+      $('#t2_time').css('display', 'block').text(randomDoTime01)
+
+      const t2_time = setInterval(() => {
+        randomDoTime01--
+        $('#t2_time').text(randomDoTime01)
+        console.log('t2倒數', randomDoTime01)
+      }, 1000)
+
+      const t2_timeOut = setTimeout(() => {
+        clearInterval(t2_time)
+        tool_btn_doing[1] = false
+
+        $('#t2_time').css('display', 'none')
+        // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
+        // $('#t2').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        // $(`#t2_i`).css('color', '#fff')
+        $(`.${toolRole01[toolRoleNumber01]}`).css('border-radius', '50%').css('background', 'rgba(255,255,0,0.0)').css('box-shadow', '0 0 0px rgba(255, 255, 0,0)')
+      }, randomDoTime01 + '000')
+    } else {
+      return
+    }
+  })
+
+  let tool_t3_i = 0
 
   // 有問題待確認
   $('#t3').click(function () {
     if (tool_btn[2] === true) {
       tool_btn[2] = false
-      $(this).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid').css('color', '#fff')
-      let i = 0
-      i++
-      let doIt = toolRoleNumber()
-      if (doIt) {
-        let roleImg = toolRole02[toolRoleNumber()]
+      tool_btn_doing[2] = true
+      let toolRoleNumber01 = toolRoleNumber()
+      let randomDoTime01 = randomDoTime()
+      let roleImg = toolRole02[toolRoleNumber()]
 
-        const makeRole = setInterval(() => {
-          if (random_role() > 5) {
-            const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
-            const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
-            let top = Math.round(Math.random() * 100) + '%'
-            let left = Math.round(Math.random() * 100) + '%'
+      $(`#t3_i`).css('color', '#ccc')
+      $('#t3_time').css('display', 'block').text(randomDoTime01)
+      tool_t3_i++
 
-            const gameBoxNumber = Math.floor(Math.random() * 3)
 
-            if (overTop.includes(top)) {
-              top = `calc(${top} - 68px)`
-            }
-            if (overLeft.includes(left)) {
-              left = `calc(${left} - 30px)`
-            }
+      const t3_time = setInterval(() => {
+        randomDoTime01--
+        $('#t3_time').text(randomDoTime01)
+        console.log('t3倒數', randomDoTime01)
+      }, 1000)
 
-            const role = $(`<div class=role_doIt${i}" style="top:${top} ; left:${left};"><img src="./image/${roleImg}.png"></div>`)
-            $(`#gameBox${gameBoxNumber}_role`).append(role)
+
+      const makeRole = setInterval(() => {
+        if (random_role() > 5) {
+          const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
+          const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
+          let top = Math.round(Math.random() * 100) + '%'
+          let left = Math.round(Math.random() * 100) + '%'
+
+          const gameBoxNumber = Math.floor(Math.random() * 3)
+
+
+          if (overTop.includes(top)) {
+            top = `calc(${top} - 68px)`
           }
-        }, 100);
-      }
+          if (overLeft.includes(left)) {
+            left = `calc(${left} - 30px)`
+          }
 
-      setTimeout(makeRole, 3000)
-      setTimeout = (() => {
-        $(`.role_doIt${i}`).css('display', none)
-      }, 3000)
+          const role = $(`<div class="role_doIt${tool_t3_i} role_doIt role_doIt_${roleImg}" style="top:${top} ; left:${left};"><img src="./image/${roleImg}.png"></div>`)
+          $(`#gameBox${gameBoxNumber}_role`).append(role)
+        }
+      }, 100);
+
+
+      const t3_timeOut = setTimeout(() => {
+        clearInterval(t3_time)
+        clearInterval(makeRole)
+        $('#t3_time').css('display', 'none')
+        tool_btn_doing[2] = false
+        // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
+        // $('#t3').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        // $(`#t3_i`).css('color', '#fff')
+
+
+        setTimeout(() => {
+          $(`.role_doIt${tool_t3_i}`).css('display', 'none')
+
+        }, 2000)
+
+      }, randomDoTime01 + '000')
+    } else {
+      return
     }
   })
 
-
-
-
-
   // 點擊得分
+
+  $('#game').on('click', '.role_doIt_Willy_01', function () {
+    $(this).stop()
+    $(this).removeClass('role_doIt_Willy_01').css('display', 'none')
+    score++
+    $('#score_number').text(score)
+  })
+
+  $('#game').on('click', '.role_doIt_woman', function () {
+    $(this).stop()
+    $(this).removeClass('role_doIt_woman').css('display', 'none')
+    score--
+    $('#score_number').text(score)
+  })
+
+  $('#game').on('click', '.role_doIt_old', function () {
+    $(this).stop()
+    $(this).removeClass('role_doIt_old').css('display', 'none')
+    score += 5
+    $('#score_number').text(score)
+  })
+
+  $('#game').on('click', '.role_doIt_willy_dog', function () {
+    $(this).stop()
+    $(this).removeClass('role_doIt_willy_dog').css('display', 'none')
+    time += 5
+    $('#time_number').text(time)
+    $('#score_number').text(score)
+  })
+
+
   $('#game').on('click', '.willyBox', function () {
     $(this).stop()
     $(this).removeClass('willyBox').css('display', 'none')

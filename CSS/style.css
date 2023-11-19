@@ -1,3 +1,7 @@
+* {
+  font-family: '俐方體11號';
+}
+
 body {
   background-color: #333;
 }
@@ -312,7 +316,7 @@ body {
   border-radius: 10px;
   text-align: center;
   /* color: #fff; */
-  /* font-family: '俐方體11號'; */
+  position: relative;
 }
 
 #tool_content i {
@@ -337,13 +341,26 @@ body {
   line-height: 100px;
 }
 
+.t_time {
+  font-size: 70px;
+  line-height: 93px;
+  /* start_btn 的顏色 */
+  color: #ff79a4;
+  /* color: rgb(255, 118, 118); */
+  display: none;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+}
+
 /* left - 畫面分隔線 */
 #line {
   width: 350px;
   height: 4.5px;
   background-color: #fff;
   box-shadow: 0.5px 0 1px #aaa;
-
   position: absolute;
   left: 50%;
   transform: translateX(-48%);
@@ -730,6 +747,15 @@ body {
   -webkit-user-drag: none;
 }
 
+.role_doIt {
+  position: absolute;
+  width: 30px;
+}
+
+.role_doIt img {
+  width: 100%;
+}
+
 .willyBox {
   position: absolute;
   /* left: 50%; */
@@ -773,7 +799,6 @@ body {
 
 .dogBox img {
   width: 100%;
-
 }
 
 /* 右邊 */
