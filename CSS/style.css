@@ -329,16 +329,61 @@ body {
   left: 40px;
 }
 
+#t1:hover::before {
+  content: '放大';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
 #t2 {
   position: absolute;
   left: 162.5px;
   line-height: 100px;
 }
 
+#t2:hover::before {
+  content: '發亮';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
 #t3 {
   position: absolute;
   left: 285px;
   line-height: 100px;
+}
+
+#t3:hover::before {
+  content: '???';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
 }
 
 .t_time {
@@ -794,7 +839,7 @@ body {
 /* willy dog 大小 */
 .dogBox {
   position: absolute;
-  width: 35px;
+  width: 45px;
 }
 
 .dogBox img {

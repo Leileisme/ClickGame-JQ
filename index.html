@@ -245,19 +245,19 @@
 
 <script>
 
-  //   Swal.fire({
-  //     imageUrl: "./image/willyFamily.jpg",
-  //     imageWidth: 600,
-  //     title: '尋找！威利在哪裡?',
-  //     html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
-  // 小心~~~不要認錯人囉！
+  Swal.fire({
+    imageUrl: "./image/willyFamily.jpg",
+    imageWidth: 600,
+    title: '尋找！威利在哪裡?',
+    html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
+  小心~~~不要認錯人囉！
 
-  // 【通緝角色】：除了「威力」還有其他人物喔！
-  // 【選擇地圖】：選好地圖後，按「Start」開始！
-  // 【彩蛋】：將不定時解鎖左方「小工具們」唷！</pre>`,
-  //     allowOutsideClick: false,
-  //     allowEscapeKey: false
-  //   })
+  【通緝角色】：除了「威力」還有其他人物喔！
+  【選擇地圖】：選好地圖後，按「Start」開始！
+  【彩蛋】：將不定時解鎖左方「小工具們」唷！</pre>`,
+    allowOutsideClick: false,
+    allowEscapeKey: false
+  })
 
 
 
@@ -425,7 +425,7 @@
     score = 0
     $('#score_number').text(score)
     // 時間
-    time = 10
+    time = 5
     $('#time_number').text(time)
 
     //  「時間與分數」個位數的位置(為什麼 < 0 時為什麼位置不會移動)
@@ -582,16 +582,6 @@
       // 開始遊戲 為什麼老師示範是前面變數設為 let timer = 0 ?
       let begin = setInterval(() => {
         time--
-        if (0 < score < 10) {
-          $('#score_number').css('left', '204px')
-        } else if (score < 0) {
-          $('#score_number').css('left', '15px')
-        } else if (score > 100) {
-          $('#score_number').css('left', '175px')
-
-        } else {
-          $('#score_number').css('left', '190px')
-        }
 
         if (time < 10) {
           $('#time_number').css('left', '204px')
@@ -699,6 +689,8 @@
 
         if (random_tool > 1 && tool_btn[random_toolType] === false && tool_btn_doing[random_toolType] === false) {
           tool_btn[random_toolType] = true
+          // 待更新
+          $(`#t${[random_toolType + 1]}`).css('cursor', 'pointer')
         }
 
 
@@ -728,6 +720,16 @@
           for (let i = 0; i < 3; i++) {
             (tool_btn[i] = false)
           }
+
+          clearInterval(t1_time)
+          clearInterval(t2_time)
+          clearInterval(t3_time)
+          clearInterval(makeRole)
+
+          clearTimeout(t1_timeOut)
+          clearTimeout(t2_timeOut)
+          clearTimeout(t3_timeOut)
+
 
           $('.tool').css('backgroundColor', '#fff').css('border', '#ddd 0px solid')
           $(`.t_time`).css('display', 'none')
@@ -829,10 +831,12 @@
   // 產生隨機角色
   let toolRole02 = ['Willy_01', 'woman', 'old', 'willy_dog']
 
+  let t1_time, t1_timeOut, t2_time, t2_timeOut, t3_time, t3_timeOut, makeRole
 
 
 
 
+  // 放大
   $('#t1').click(function () {
     if (tool_btn[0] === true) {
       tool_btn[0] = false
@@ -840,24 +844,29 @@
       let toolRoleNumber01 = toolRoleNumber()
       let randomDoTime01 = randomDoTime()
 
-      $(`.${toolRole01[toolRoleNumber01]}`).css('width', '65px')
+      if (toolRoleNumber01 === 3) {
+        $(`.${toolRole01[toolRoleNumber01]}`).css('width', '80px')
+      } else {
+        $(`.${toolRole01[toolRoleNumber01]}`).css('width', '65px')
+      }
+
       $(`#t1_i`).css('color', '#ccc')
       $('#t1_time').css('display', 'block').text(randomDoTime01)
 
 
       // #t1 小工具倒數
-      const t1_time = setInterval(() => {
+      t1_time = setInterval(() => {
         randomDoTime01--
         $('#t1_time').text(randomDoTime01)
         console.log('倒數', randomDoTime01)
       }, 1000)
 
-      const t1_timeOut = setTimeout(() => {
+      t1_timeOut = setTimeout(() => {
         clearInterval(t1_time)
         tool_btn_doing[0] = false
         $('#t1_time').css('display', 'none')
-        // $('#t1').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
-        // $(`#t1_i`).css('color', '#fff')
+        $('#t1').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        $(`#t1_i`).css('color', '#fff')
 
         if (toolRoleNumber01 === 3) {
           $(`.${toolRole01[toolRoleNumber01]}`).css('width', '35px')
@@ -884,20 +893,20 @@
       $(`#t2_i`).css('color', '#ccc')
       $('#t2_time').css('display', 'block').text(randomDoTime01)
 
-      const t2_time = setInterval(() => {
+      t2_time = setInterval(() => {
         randomDoTime01--
         $('#t2_time').text(randomDoTime01)
         console.log('t2倒數', randomDoTime01)
       }, 1000)
 
-      const t2_timeOut = setTimeout(() => {
+      t2_timeOut = setTimeout(() => {
         clearInterval(t2_time)
         tool_btn_doing[1] = false
 
         $('#t2_time').css('display', 'none')
         // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
-        // $('#t2').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
-        // $(`#t2_i`).css('color', '#fff')
+        $('#t2').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        $(`#t2_i`).css('color', '#fff')
         $(`.${toolRole01[toolRoleNumber01]}`).css('border-radius', '50%').css('background', 'rgba(255,255,0,0.0)').css('box-shadow', '0 0 0px rgba(255, 255, 0,0)')
       }, randomDoTime01 + '000')
     } else {
@@ -907,7 +916,7 @@
 
   let tool_t3_i = 0
 
-  // 有問題待確認
+  // 突然出現很多角色
   $('#t3').click(function () {
     if (tool_btn[2] === true) {
       tool_btn[2] = false
@@ -921,14 +930,14 @@
       tool_t3_i++
 
 
-      const t3_time = setInterval(() => {
+      t3_time = setInterval(() => {
         randomDoTime01--
         $('#t3_time').text(randomDoTime01)
         console.log('t3倒數', randomDoTime01)
       }, 1000)
 
 
-      const makeRole = setInterval(() => {
+      makeRole = setInterval(() => {
         if (random_role() > 5) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
@@ -936,8 +945,6 @@
           let left = Math.round(Math.random() * 100) + '%'
 
           const gameBoxNumber = Math.floor(Math.random() * 3)
-
-
           if (overTop.includes(top)) {
             top = `calc(${top} - 68px)`
           }
@@ -950,15 +957,14 @@
         }
       }, 100);
 
-
-      const t3_timeOut = setTimeout(() => {
+      t3_timeOut = setTimeout(() => {
         clearInterval(t3_time)
         clearInterval(makeRole)
         $('#t3_time').css('display', 'none')
         tool_btn_doing[2] = false
         // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
-        // $('#t3').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
-        // $(`#t3_i`).css('color', '#fff')
+        $('#t3').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
+        $(`#t3_i`).css('color', '#fff')
 
 
         setTimeout(() => {
@@ -974,66 +980,56 @@
 
   // 點擊得分
 
-  $('#game').on('click', '.role_doIt_Willy_01', function () {
+  $('#game').on('click', '.willyBox,.role_doIt_Willy_01', function () {
     $(this).stop()
-    $(this).removeClass('role_doIt_Willy_01').css('display', 'none')
+    $(this).removeClass('willyBox,.role_doIt_Willy_01').css('display', 'none')
     score++
     $('#score_number').text(score)
-  })
-
-  $('#game').on('click', '.role_doIt_woman', function () {
-    $(this).stop()
-    $(this).removeClass('role_doIt_woman').css('display', 'none')
-    score--
-    $('#score_number').text(score)
-  })
-
-  $('#game').on('click', '.role_doIt_old', function () {
-    $(this).stop()
-    $(this).removeClass('role_doIt_old').css('display', 'none')
-    score += 5
-    $('#score_number').text(score)
-  })
-
-  $('#game').on('click', '.role_doIt_willy_dog', function () {
-    $(this).stop()
-    $(this).removeClass('role_doIt_willy_dog').css('display', 'none')
-    time += 5
-    $('#time_number').text(time)
-    $('#score_number').text(score)
+    setScoreNumberCSS()
   })
 
 
-  $('#game').on('click', '.willyBox', function () {
-    $(this).stop()
-    $(this).removeClass('willyBox').css('display', 'none')
-    score++
-    $('#score_number').text(score)
-  })
-
-
-  $('#game').on('click', '.womanBox', function () {
+  $('#game').on('click', '.womanBox,.role_doIt_woman', function () {
     $(this).stop()
     $(this).removeClass('womanBox').css('display', 'none')
     score--
     $('#score_number').text(score)
+    setScoreNumberCSS()
   })
 
-  $('#game').on('click', '.oldBox', function () {
+  $('#game').on('click', '.oldBox,.role_doIt_old', function () {
     $(this).stop()
     $(this).removeClass('oldBox').css('display', 'none')
     score += 5
     $('#score_number').text(score)
+    setScoreNumberCSS()
   })
 
-  $('#game').on('click', '.dogBox', function () {
+  $('#game').on('click', '.dogBox,.role_doIt_willy_dog ', function () {
     $(this).stop()
     $(this).removeClass('dogBox').css('display', 'none')
     time += 5
     $('#time_number').text(time)
+    setScoreNumberCSS()
+    if (time < 10) {
+      $('#time_number').css('left', '204px')
+    } else {
+      $('#time_number').css('left', '190px')
+    }
+
   })
 
-
+  function setScoreNumberCSS() {
+    if (score < 0) {
+      $('#score_number').css('left', '190px')
+    } else if (score >= 0 && score <= 9) {
+      $('#score_number').css('left', '204px')
+    } else if (score >= 10 && score <= 99) {
+      $('#score_number').css('left', '190px')
+    } else if (score >= 100) {
+      $('#score_number').css('left', '175px')
+    }
+  }
 
 </script>
 
