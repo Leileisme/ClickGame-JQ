@@ -32,6 +32,7 @@ body {
 .fire_lose {
   font-family: '俐方體11號';
   margin-top: 20px;
+  line-height: 27px;
 }
 
 /* 畫面內容(上面是Swal) */
@@ -844,6 +845,32 @@ body {
 
 .dogBox img {
   width: 100%;
+}
+
+/* click後跳出的分數 */
+
+/* 分數樣式 */
+.jumpScore {
+  position: absolute;
+  color: #fff;
+  width: 50px;
+  height: auto;
+  padding: 5px;
+  padding-top: 6px;
+  font-size: 20px;
+  font-weight: 900;
+  background-color: rgba(30, 30, 30, 0.7);
+  background-color: rgba(255, 121, 163, 0.9);
+  border-radius: 10px;
+  /* 忽略點擊事件 */
+  pointer-events: none;
+}
+
+.jump_add_1,
+.jump_add_5,
+.jump_reduce_1,
+.jump_add_5s {
+  /* display: none; */
 }
 
 /* 右邊 */

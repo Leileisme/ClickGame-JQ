@@ -14,7 +14,7 @@
   <!-- 我的 CSS -->
   <!-- <link rel="stylesheet" href="./CSS/style.css"> -->
   <link rel="stylesheet" href="./CSS/style.css">
-
+  <link rel="stylesheet" href="./CSS/animation.css">
   <style>
     @font-face {
       font-family: 'Pixel';
@@ -93,8 +93,8 @@
       <div id="number"></div>
 
       <!-- game_concent 的底圖 -->
-      <img src="./image/WhereWilly03.png" id="game_img">
-      <!-- <img src="./image/map01.jpg" id="game_img"> -->
+      <!-- <img src="./image/WhereWilly03.png" id="game_img"> -->
+      <img src="./image/map01.jpg" id="game_img">
 
 
       <!-- 遊戲區 -->
@@ -154,6 +154,13 @@
                 <div id="cantClick9"></div>
                 <div id="cantClick10"></div>
               </div>
+            </div>
+
+            <div class="jumpScore_box">
+              <!-- <div class="jumpScore jump_add_1">+1分</div>
+              <div class="jumpScore jump_add_5">+5分</div>
+              <div class="jumpScore jump_reduce_1">-1分</div>
+              <div class="jumpScore jump_add_5s">+5秒</div> -->
             </div>
 
             <div id="gameBox1_role"></div>
@@ -245,19 +252,19 @@
 
 <script>
 
-  Swal.fire({
-    imageUrl: "./image/willyFamily.jpg",
-    imageWidth: 600,
-    title: '尋找！威利在哪裡?',
-    html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
-  小心~~~不要認錯人囉！
+  // Swal.fire({
+  //   imageUrl: "./image/willyFamily.jpg",
+  //   imageWidth: 600,
+  //   title: '尋找！威利在哪裡?',
+  //   html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
+  // 小心~~~不要認錯人囉！
 
-  【通緝角色】：除了「威力」還有其他人物喔！
-  【選擇地圖】：選好地圖後，按「Start」開始！
-  【彩蛋】：將不定時解鎖左方「小工具們」唷！</pre>`,
-    allowOutsideClick: false,
-    allowEscapeKey: false
-  })
+  // 【通緝角色】：除了「威力」還有其他人物喔！
+  // 【選擇地圖】：選好地圖後，按「Start」開始！
+  // 【隨機道具】：不定時解鎖左方道具,幫你尋人~</pre>`,
+  //   allowOutsideClick: false,
+  //   allowEscapeKey: false
+  // })
 
 
 
@@ -979,10 +986,22 @@
   })
 
   // 點擊得分
+  let jump_add_1
 
   $('#game').on('click', '.willyBox,.role_doIt_Willy_01', function () {
     $(this).stop()
+    let thisLeft = $(this).css('left')
     $(this).removeClass('willyBox,.role_doIt_Willy_01').css('display', 'none')
+    let thisRight = $(this).css('right')
+    jump_add_1 = $(`<div class="jumpScore jump_add_1" style="left=${thisLeft};right=${thisRight}">+1分</div>`)
+    // 這邊就跑不出東西　原本放在　．jumpScore_box（位置跟著消失的東西一樣）
+    // 這裡可以用　fade out? 還是用動畫寫
+    $(this).append('jump_add_1')
+
+
+    setTimeout(() => {
+      $('.jump_add_1').css('display', 'none')
+    }, 1000);
     score++
     $('#score_number').text(score)
     setScoreNumberCSS()
