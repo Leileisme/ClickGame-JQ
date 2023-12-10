@@ -51,10 +51,13 @@
       <div id="time"> 餘時間：<span id="time_number">00</span> 　　秒</div>
       <!-- 工具 -->
       <div id="tool_content">
+
         <div class="tool" id="t1">
           <i class="fa-solid fa-magnifying-glass t_i" id="t1_i"></i>
           <span id="t1_time" class="t_time"></span>
         </div>
+
+
         <div class="tool" id="t2">
           <i class="fa-solid fa-wand-sparkles  t_i" id="t2_i"></i>
           <span id="t2_time" class="t_time"></span>
@@ -93,8 +96,8 @@
       <div id="number"></div>
 
       <!-- game_concent 的底圖 -->
-      <!-- <img src="./image/WhereWilly03.png" id="game_img"> -->
-      <img src="./image/map01.jpg" id="game_img">
+      <img src="./image/WhereWilly03.png" id="game_img">
+      <!-- <img src="./image/map01.jpg" id="game_img"> -->
 
 
       <!-- 遊戲區 -->
@@ -157,10 +160,10 @@
             </div>
 
             <div class="jumpScore_box">
-              <!-- <div class="jumpScore jump_add_1">+1分</div>
-              <div class="jumpScore jump_add_5">+5分</div>
-              <div class="jumpScore jump_reduce_1">-1分</div>
-              <div class="jumpScore jump_add_5s">+5秒</div> -->
+              <!-- <div class="jumpScore jump_add_1">+1</div> -->
+              <!-- <div class="jumpScore jump_add_5">+5</div> -->
+              <!-- <div class="jumpScore jump_reduce_1">-1</div> -->
+              <!-- <div class="jumpScore jump_add_5s">+5s</div> -->
             </div>
 
             <div id="gameBox1_role"></div>
@@ -252,19 +255,19 @@
 
 <script>
 
-  // Swal.fire({
-  //   imageUrl: "./image/willyFamily.jpg",
-  //   imageWidth: 600,
-  //   title: '尋找！威利在哪裡?',
-  //   html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
-  // 小心~~~不要認錯人囉！
+  Swal.fire({
+    imageUrl: "./image/willyFamily.jpg",
+    imageWidth: 600,
+    title: '尋找！威利在哪裡?',
+    html: `<pre class="fire_lose">請找出通緝、藏身在人海裡的「威力」！
+  小心~~~不要認錯人囉！
 
-  // 【通緝角色】：除了「威力」還有其他人物喔！
-  // 【選擇地圖】：選好地圖後，按「Start」開始！
-  // 【隨機道具】：不定時解鎖左方道具,幫你尋人~</pre>`,
-  //   allowOutsideClick: false,
-  //   allowEscapeKey: false
-  // })
+  【通緝角色】：除了「威力」還有其他人物喔！
+  【選擇地圖】：選好地圖後，按「Start」開始！
+  【隨機道具】：不定時解鎖左方道具,幫你尋人~</pre>`,
+    allowOutsideClick: false,
+    allowEscapeKey: false
+  })
 
 
 
@@ -419,20 +422,11 @@
     $('.tool').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
     $(`.t_i`).css('color', '#fff')
 
-
-    // $('.tool').each((index, el) => {
-    //   if (tool_btn[index] === false) {
-    //     $(` #t${index + 1}`).css('backgroundColor', '#ccc')
-    //     $(` #t${index + 1}`).css('border', '#ddd 1px solid')
-    //     $(el).css('color', '#fff')
-    //   }
-    // });
-
     // 分數
     score = 0
     $('#score_number').text(score)
     // 時間
-    time = 5
+    time = 60
     $('#time_number').text(time)
 
     //  「時間與分數」個位數的位置(為什麼 < 0 時為什麼位置不會移動)
@@ -586,7 +580,7 @@
 
 
 
-      // 開始遊戲 為什麼老師示範是前面變數設為 let timer = 0 ?
+      // 開始遊戲
       let begin = setInterval(() => {
         time--
 
@@ -602,10 +596,10 @@
         $('gameBox2_map01').css('display', 'block')
 
         // 每秒(可能)產生新角色
-        // 符合條件時：最多8個 每秒產生的 willy
+        // 符合條件時：最多10個 每秒產生的 willy
         const random_willy = Math.ceil(Math.random() * 10)
 
-        if (random_willy > 5 && $('.willyBox').length < 8) {
+        if (random_willy > 5 && $('.willyBox').length < 10) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -650,7 +644,7 @@
         // 符合條件時：最多2個  每秒產生的  old
         const random_old = Math.ceil(Math.random() * 10)
 
-        if (random_old > 9 && ('.oldBox').length < 2) {
+        if (random_old > 8 && ('.oldBox').length < 2) {
           const overTop = ['93%', '94%', '95%', '96%', '97%', '98%', '99%', '100%']
           const overLeft = ['95%', '96%', '97%', '98%', '99%', '100%']
           let top = Math.round(Math.random() * 100) + '%'
@@ -669,7 +663,7 @@
         }
 
 
-        // 符合條件時：最多2個  每秒產生的  dog 
+        // 符合條件時：最多3個  每秒產生的  dog 
         const random_dog = Math.ceil(Math.random() * 10)
 
         if (random_dog > 8 && ('."dogBox').length < 3) {
@@ -699,6 +693,17 @@
           // 待更新
           $(`#t${[random_toolType + 1]}`).css('cursor', 'pointer')
         }
+
+        // 回來
+        // tool_btn.forEach(el => {
+        //   if (el === false)
+        //     $(`#t${[random_toolType + 1]}`).css('cursor', 'auto')
+        // });
+
+        // tool_btn.forEach(el => {
+        //   if (el === true)
+        //     $(`#t${[random_toolType + 1]}`).css('cursor', 'pointer')
+        // });
 
 
         if (tool_btn[random_toolType] === true) {
@@ -752,6 +757,7 @@
           $('#gameBox0_role').empty()
           $('#gameBox1_role').empty()
           $('#gameBox2_role').empty()
+          $('.jumpScore_box').empty()
 
           // 放回封面圖
           $('#game_img').attr('src', `./image/WhereWilly03.png`)
@@ -852,10 +858,12 @@
       let randomDoTime01 = randomDoTime()
 
       if (toolRoleNumber01 === 3) {
-        $(`.${toolRole01[toolRoleNumber01]}`).css('width', '80px')
+        $(`.${toolRole01[toolRoleNumber01]}`).css('width', '100px')
       } else {
         $(`.${toolRole01[toolRoleNumber01]}`).css('width', '65px')
       }
+
+      console.log($(`.${toolRole01[toolRoleNumber01]}`), '放大的人')
 
       $(`#t1_i`).css('color', '#ccc')
       $('#t1_time').css('display', 'block').text(randomDoTime01)
@@ -874,9 +882,10 @@
         $('#t1_time').css('display', 'none')
         $('#t1').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
         $(`#t1_i`).css('color', '#fff')
+        toolCursorT1()
 
         if (toolRoleNumber01 === 3) {
-          $(`.${toolRole01[toolRoleNumber01]}`).css('width', '35px')
+          $(`.${toolRole01[toolRoleNumber01]}`).css('width', '50px')
         } else {
           $(`.${toolRole01[toolRoleNumber01]}`).css('width', '30px')
         }
@@ -900,6 +909,9 @@
       $(`#t2_i`).css('color', '#ccc')
       $('#t2_time').css('display', 'block').text(randomDoTime01)
 
+      console.log($(`.${toolRole01[toolRoleNumber01]}`), '發亮的人')
+
+
       t2_time = setInterval(() => {
         randomDoTime01--
         $('#t2_time').text(randomDoTime01)
@@ -909,6 +921,7 @@
       t2_timeOut = setTimeout(() => {
         clearInterval(t2_time)
         tool_btn_doing[1] = false
+        toolCursorT2()
 
         $('#t2_time').css('display', 'none')
         // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
@@ -936,6 +949,7 @@
       $('#t3_time').css('display', 'block').text(randomDoTime01)
       tool_t3_i++
 
+      console.log($(`.${toolRole01[toolRoleNumber01]}`), '出現很多')
 
       t3_time = setInterval(() => {
         randomDoTime01--
@@ -969,6 +983,7 @@
         clearInterval(makeRole)
         $('#t3_time').css('display', 'none')
         tool_btn_doing[2] = false
+        toolCursorT3()
         // 這邊不放 會慢一秒變色，放了若剛好 time=0 則會變灰色(不會重置)
         $('#t3').css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
         $(`#t3_i`).css('color', '#fff')
@@ -987,21 +1002,27 @@
 
   // 點擊得分
   let jump_add_1
+  let jump_add_5
+  let jump_reduce_1
+  let jump_add_5s
 
   $('#game').on('click', '.willyBox,.role_doIt_Willy_01', function () {
-    $(this).stop()
     let thisLeft = $(this).css('left')
-    $(this).removeClass('willyBox,.role_doIt_Willy_01').css('display', 'none')
-    let thisRight = $(this).css('right')
-    jump_add_1 = $(`<div class="jumpScore jump_add_1" style="left=${thisLeft};right=${thisRight}">+1分</div>`)
-    // 這邊就跑不出東西　原本放在　．jumpScore_box（位置跟著消失的東西一樣）
-    // 這裡可以用　fade out? 還是用動畫寫
-    $(this).append('jump_add_1')
-
+    let thisTop = $(this).css('top')
+    $(this).addClass('fadeOut_role pointerEvents_none')
+    jump_add_1 = $(`<div class="jumpScore jump_add_1 fadeOut_score" style="left:${thisLeft};top:${thisTop} ; transform: translate(-21%,-100%);">+1</div>`)
+    $('.jumpScore_box').append(jump_add_1)
 
     setTimeout(() => {
+      $(this).removeClass('willyBox role_doIt_Willy_01').css('display', 'none')
+    }, 400);
+
+    const thisScore = $('.jump_add_1')
+    setTimeout(() => {
       $('.jump_add_1').css('display', 'none')
-    }, 1000);
+      console.log(this, thisScore, '不會消失的分數?')
+    }, 1400);
+
     score++
     $('#score_number').text(score)
     setScoreNumberCSS()
@@ -1009,33 +1030,69 @@
 
 
   $('#game').on('click', '.womanBox,.role_doIt_woman', function () {
-    $(this).stop()
-    $(this).removeClass('womanBox').css('display', 'none')
+    let thisLeft = $(this).css('left')
+    let thisTop = $(this).css('top')
+    $(this).addClass('fadeOut_role pointerEvents_none')
+    jump_reduce_1 = $(`<div class="jumpScore jump_reduce_1 fadeOut_score" style="left:${thisLeft};top:${thisTop} ; transform: translate(-21%,-100%);">-1</div>`)
+    $('.jumpScore_box').append(jump_reduce_1)
+
+    setTimeout(() => {
+      $(this).removeClass('womanBox role_doIt_woman').css('display', 'none')
+    }, 400);
+
+    setTimeout(() => {
+      $('.jump_reduce_1').css('display', 'none')
+    }, 1400);
+
     score--
     $('#score_number').text(score)
     setScoreNumberCSS()
   })
 
   $('#game').on('click', '.oldBox,.role_doIt_old', function () {
-    $(this).stop()
-    $(this).removeClass('oldBox').css('display', 'none')
+    let thisLeft = $(this).css('left')
+    let thisTop = $(this).css('top')
+    $(this).addClass('fadeOut_role pointerEvents_none')
+    jump_add_5 = $(`<div class="jumpScore jump_add_5 fadeOut_score" style="left:${thisLeft};top:${thisTop} ; transform: translate(-21%,-100%);">+5</div>`)
+    $('.jumpScore_box').append(jump_add_5)
+
+    setTimeout(() => {
+      $(this).removeClass('oldBox role_doIt_old').css('display', 'none')
+    }, 400);
+
+    setTimeout(() => {
+      $('.jump_add_5').css('display', 'none')
+    }, 1400);
+
     score += 5
     $('#score_number').text(score)
     setScoreNumberCSS()
   })
 
   $('#game').on('click', '.dogBox,.role_doIt_willy_dog ', function () {
-    $(this).stop()
-    $(this).removeClass('dogBox').css('display', 'none')
+    let thisLeft = $(this).css('left')
+    let thisTop = $(this).css('top')
+    $(this).addClass('fadeOut_role pointerEvents_none')
+    jump_add_5s = $(`<div class="jumpScore jump_add_5s fadeOut_score" style="left:${thisLeft};top:${thisTop} ; transform: translate(-21%,-100%);">+5s</div>`)
+    $('.jumpScore_box').append(jump_add_5s)
+
+    setTimeout(() => {
+      $(this).removeClass('dogBox role_doIt_willy_dog').css('display', 'none')
+    }, 400);
+
+    setTimeout(() => {
+      $('.jump_add_5s').css('display', 'none')
+    }, 1400);
+
     time += 5
     $('#time_number').text(time)
     setScoreNumberCSS()
+
     if (time < 10) {
       $('#time_number').css('left', '204px')
     } else {
       $('#time_number').css('left', '190px')
     }
-
   })
 
   function setScoreNumberCSS() {
@@ -1049,6 +1106,22 @@
       $('#score_number').css('left', '175px')
     }
   }
+
+
+  function toolCursorT1() {
+    $('#t1').css('cursor', 'auto')
+  }
+
+  function toolCursorT2() {
+    $('#t2').css('cursor', 'auto')
+  }
+
+
+  function toolCursorT3() {
+    $('#t3').css('cursor', 'auto')
+  }
+
+
 
 </script>
 
