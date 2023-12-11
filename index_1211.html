@@ -561,6 +561,10 @@
           $('#time_number').css('left', '190px')
         }
 
+        // 這是甚麼??
+        // $('gameBox1_map01').css('display', 'block')
+        // $('gameBox2_map01').css('display', 'block')
+
         // 每秒(可能)產生新角色
         // 符合條件時：最多10個 每秒產生的 willy
         const random_willy = Math.ceil(Math.random() * 10)
@@ -584,6 +588,7 @@
           const willy01 = $(`<div class="willyBox" style="top:${top} ; left:${left};"><img src="./image/Willy_0${willyNumber}.png"></div>`)
           $(`#gameBox${gameBoxNumber}_role`).append(willy01)
         }
+
 
         // 符合條件時：最多4個  每秒產生的 woman
         const random_woman = Math.ceil(Math.random() * 10)
@@ -650,29 +655,27 @@
         }
 
         // 小工具隨機啟用
-        // 監聽「小工具狀態」的變數在最前面
         const random_tool = Math.ceil(Math.random() * 10)
         const random_toolType = Math.floor(Math.random() * 3)
 
-        // 隨機開啟 「小工具」按鈕，並將 cursor 設為 pointer
         if (random_tool > 1 && tool_btn[random_toolType] === false && tool_btn_doing[random_toolType] === false) {
           tool_btn[random_toolType] = true
           $(`#t${[random_toolType + 1]}`).css('cursor', 'pointer')
         }
 
-        // 「開啟的小工具btn」 樣式
         if (tool_btn[random_toolType] === true) {
           $(`#t${random_toolType + 1}`).css('backgroundColor', '#fff').css('border', '#ddd 0px solid')
           $(`#t${random_toolType + 1}_i`).css('color', '#000')
         }
 
-        // 「無效的小工具btn」 樣式
+
         for (let i = 0; i < 3; i++) {
           if (tool_btn[i] === false && tool_btn_doing[i] === false) {
             $(`#t${i + 1}`).css('backgroundColor', '#ccc').css('border', '#ddd 1px solid')
             $(`#t${i + 1}_i`).css('color', '#fff')
           }
         }
+
 
         // 時間到之後
         if (time === 0) {
@@ -682,23 +685,25 @@
           $('#btn').css('border', '0px')
           $('#btn').css('top', '450px')
 
-          // 小工具恢復預設
+          // 小工具樣式恢復
           for (let i = 0; i < 3; i++) {
             (tool_btn[i] = false)
           }
-          // 清除「使用中小工具」倒數
+
           clearInterval(t1_time)
           clearInterval(t2_time)
           clearInterval(t3_time)
           clearInterval(makeRole)
+
           clearTimeout(t1_timeOut)
           clearTimeout(t2_timeOut)
           clearTimeout(t3_timeOut)
 
-          // 小工具樣式-恢復預設
+
           $('.tool').css('backgroundColor', '#fff').css('border', '#ddd 0px solid')
           $(`.t_time`).css('display', 'none')
           $(`.t_i`).css('color', '#000')
+
 
           // 開始鈕+地圖選擇器 開
           $(this).attr('disabled', false)
@@ -716,24 +721,27 @@
           $('#gameBox1_map01').css('display', 'none')
           $('#gameBox2_map01').css('display', 'none')
 
+
           // 把版面數字歸零
           $('#score_number').text('00')
           $('#time_number').text('00')
 
-          // 「倒數」、「分數」位置回歸
+          // 倒數與分數回歸
           $('#score_number').css('left', '190px')
           $('#time_number').css('left', '190px')
 
-          // cursor 標靶消失
+          // 標靶消失
           $('#game').css('cursor', 'auto')
 
 
-          // 最高分存本地 / 最高分 & 非最高分的 alter
+
           if (map_btn) {
             if (score > high_map[map_btn].score) {
               Swal.fire({
+                // icon: 'success',
                 imageUrl: "./image/Willy_logo_big.png",
                 imageWidth: 500,
+                // imageHeight: 200,
                 imageAlt: "Willy image",
                 title: '你是最高分',
                 html: ` <pre class="fire_html"> 恭喜~得到 ${score} 分！<pre>`,
@@ -772,10 +780,11 @@
     }, 3000)
   })
 
-  // 小工具隨機啟用的秒數
+  // 隨機啟用的秒數
   const randomDoTime = function () {
     return Math.ceil(Math.random() * 3)
   }
+
 
   // 角色的隨機數
   const toolRoleNumber = function () {
@@ -795,7 +804,9 @@
   let t1_time, t1_timeOut, t2_time, t2_timeOut, t3_time, t3_timeOut, makeRole
 
 
-  // 小工具 - 放大
+
+
+  // 放大
   $('#t1').click(function () {
     if (tool_btn[0] === true) {
       tool_btn[0] = false
@@ -843,7 +854,7 @@
 
 
 
-  // 小工具 - 發亮
+  // 發亮
   $('#t2').click(function () {
     if (tool_btn[1] === true) {
       tool_btn[1] = false
@@ -882,7 +893,7 @@
 
   let tool_t3_i = 0
 
-  // 小工具 - 突然出現很多角色
+  // 突然出現很多角色
   $('#t3').click(function () {
     if (tool_btn[2] === true) {
       tool_btn[2] = false
@@ -946,11 +957,12 @@
     }
   })
 
+  // 點擊得分
+  let jump_add_1
+  let jump_add_5
+  let jump_reduce_1
+  let jump_add_5s
 
-  // 點擊得分 + 跳得分的數字
-  let jump_add_1, jump_add_5, jump_reduce_1, jump_add_5s
-
-  // 點擊得分-威力
   $('#game').on('click', '.willyBox,.role_doIt_Willy_01', function () {
     let thisLeft = $(this).css('left')
     let thisTop = $(this).css('top')
@@ -973,7 +985,7 @@
     setScoreNumberCSS()
   })
 
-  // 點擊得分-女人
+
   $('#game').on('click', '.womanBox,.role_doIt_woman', function () {
     let thisLeft = $(this).css('left')
     let thisTop = $(this).css('top')
@@ -994,7 +1006,6 @@
     setScoreNumberCSS()
   })
 
-  // 點擊得分-老人
   $('#game').on('click', '.oldBox,.role_doIt_old', function () {
     let thisLeft = $(this).css('left')
     let thisTop = $(this).css('top')
@@ -1015,7 +1026,6 @@
     setScoreNumberCSS()
   })
 
-  // 點擊得分-狗
   $('#game').on('click', '.dogBox,.role_doIt_willy_dog ', function () {
     let thisLeft = $(this).css('left')
     let thisTop = $(this).css('top')
@@ -1042,7 +1052,6 @@
     }
   })
 
-  // 分數秒數 個位數/十位數 的樣式
   function setScoreNumberCSS() {
     if (score < 0) {
       $('#score_number').css('left', '190px')
@@ -1055,16 +1064,22 @@
     }
   }
 
-  // 小工具非啟用時的cursor', 'auto')
+
   function toolCursorT1() {
     $('#t1').css('cursor', 'auto')
   }
+
   function toolCursorT2() {
     $('#t2').css('cursor', 'auto')
   }
+
+
   function toolCursorT3() {
     $('#t3').css('cursor', 'auto')
   }
+
+
+
 </script>
 
 </html>
