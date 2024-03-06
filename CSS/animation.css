@@ -1,0 +1,38 @@
+/*  人物 fadeOut */
+@keyframes fadeOut_role {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut_role {
+  animation-name: fadeOut_role;
+  animation-duration: 0.5s;
+}
+
+/*  分數 fadeOut */
+@keyframes fadeOut_score {
+  0% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 1;
+    transform: translate(-21%, -160%) scale(110%);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(-21%, -160%) scale(110%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-21%, -160%) scale(110%);
+  }
+}
+
+.fadeOut_score {
+  animation-name: fadeOut_score;
+  animation-duration: 1.5s;
+}

@@ -1,0 +1,1048 @@
+/* * {
+	font-family: '俐方體11號';
+} */
+
+#copyright {
+  position: absolute;
+  right: 0;
+  bottom: -12px;
+  color: #aaa;
+  font-family: initial;
+  margin-right: 2.5%;
+  /* font-size: 7px; */
+}
+
+body {
+  background-color: #333;
+  font-family: '俐方體11號';
+}
+
+.swal2-image {
+  /* margin-left: 48px; */
+  margin-bottom: -3px;
+}
+
+.swal2-title {
+  color: #000000;
+  font-family: '俐方體11號';
+  margin-bottom: -25px;
+}
+
+.fire_html {
+  font-family: '俐方體11號';
+  font-weight: 900;
+  margin-bottom: -10px;
+}
+
+.swal2-input {
+  font-family: '俐方體11號';
+  width: 300px;
+  margin: auto;
+}
+
+.fire_lose {
+  font-family: '俐方體11號';
+  margin-top: 20px;
+  line-height: 27px;
+}
+
+/* 畫面內容(上面是Swal) */
+
+#content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1740px;
+  height: 940px;
+  background-color: rgb(255, 213, 135);
+}
+
+#left {
+  /* background-color: cadetblue; */
+  box-sizing: border-box;
+  background-color: wheat;
+  height: 910px;
+  width: 420px;
+  float: left;
+  margin-top: 15px;
+  margin-left: 20px;
+  position: relative;
+  border: 5px solid #fff;
+  border-radius: 10px;
+  user-select: none;
+}
+
+/* left - 文字 選擇地圖 */
+#selectMap {
+  width: 360px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15px;
+  text-align: center;
+  font-size: 50px;
+  font-family: '俐方體11號';
+  font-weight: 500;
+  user-select: none;
+}
+
+/* left - 地圖 */
+#map {
+  width: 350px;
+  height: 350px;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 78px;
+  transform: translateX(-50%);
+  box-shadow: 15px 15px 1px #aaa;
+  border-radius: 10px;
+}
+
+#map_img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  border: 5px solid #fff;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#map_btn_L {
+  /* width: 40px;
+	height: 40px; */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -20px;
+  box-shadow: 4px 4px 1px #aaa;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  padding-top: 3px;
+  padding-left: 16px;
+  /* line-height: 50px; */
+  font-size: 35px;
+  font-weight: bolder;
+  font-family: 'Pixel';
+  border: none;
+  cursor: pointer;
+}
+
+#map_btn_R {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -21px;
+  box-shadow: 4px 4px 1px #aaa;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+  padding-top: 3px;
+  padding-left: 16px;
+  /* line-height: 50px; */
+  font-size: 35px;
+  font-weight: bolder;
+  font-family: 'Pixel';
+  border: none;
+  cursor: pointer;
+}
+
+#btn {
+  border: none;
+  width: 350px;
+  height: 100px;
+  background-color: wheat;
+  background-color: #ff79a4;
+  color: #fff;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48%);
+  top: 450px;
+  /* text-align: center; */
+  padding-left: 65px;
+  font-size: 80px;
+  line-height: 100px;
+  box-shadow: 7px 7px 1px #aaa;
+  font-family: 'Pixel';
+  padding-right: 33px;
+  cursor: pointer;
+}
+
+/* 開始按鈕關聯的btn */
+/* #starBtn {
+	display: none;
+} */
+
+/* left - 計分 */
+#score {
+  width: 350px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 7px 1px #aaa;
+  background-color: #fff;
+  /* background-color: #ffa916; */
+  font-family: '俐方體11號';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48%);
+  top: 566px;
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 7px;
+}
+
+/* left - 計時 */
+#time {
+  width: 350px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 7px 1px #aaa;
+  background-color: #fff;
+  font-family: '俐方體11號';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48%);
+  top: 638px;
+  font-size: 30px;
+  font-weight: 600;
+  padding-top: 7px;
+}
+
+/* left - 計分/計時的特殊字 */
+#score_number {
+  text-align: center;
+  font-family: '俐方體11號';
+  position: absolute;
+  left: 190px;
+  /* left: 204px; */
+  top: 0;
+  /* transform: translateX(0, -50%); */
+  font-size: 50px;
+  font-weight: 600;
+  padding-top: 7px;
+  color: rgb(255, 118, 118);
+  /* 超過100分時 */
+  /* left: 175px; */
+}
+
+#time_number {
+  text-align: center;
+  font-family: '俐方體11號';
+  position: absolute;
+  left: 190px;
+  top: 0;
+  /* transform: translateX(0, -50%); */
+  font-size: 50px;
+  font-weight: 600;
+  padding-top: 7px;
+  color: rgb(255, 118, 118);
+}
+
+/* left - 紀錄保持人 */
+#high {
+  width: 350px;
+  height: 57px;
+  /* line-height: 50px; */
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 7px 1px #aaa;
+  background-color: #ffffff;
+  background-color: #d8d8d8;
+  font-family: '俐方體11號';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48%);
+  bottom: 18px;
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 8px;
+  box-sizing: border-box;
+  /* padding-top: 12px; */
+}
+
+/* #highScoreNumber_map01,
+#highName_map01, */
+#highScoreNumber_map02,
+#highName_map02,
+#highScoreNumber_map03,
+#highName_map03 {
+  display: none;
+}
+#high {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highScore {
+  width: 130px;
+  height: 30px;
+  /* border: 1px solid red; */
+}
+
+#highScoreNumber_map01,
+#highScoreNumber_map02,
+#highScoreNumber_map03 {
+  width: 50px;
+  height: 30px;
+  /* border: 1px solid red; */
+  margin-right: 5px;
+  margin-left: -1.5px;
+  overflow: hidden;
+}
+#ScoreWord {
+  width: 70px;
+  height: 30px;
+  /* border: 1px solid red; */
+}
+
+#highName_map01,
+#highName_map02,
+#highName_map03 {
+  width: 69px;
+  height: 30px;
+  /* border: 1px solid red; */
+  overflow: hidden;
+  margin-left: 2px;
+}
+
+/* left - 工具 */
+/* line-height 為什麼這邊不能用??? */
+
+#tool_content {
+  position: absolute;
+  top: 710px;
+}
+
+.tool {
+  width: 105px;
+  height: 80px;
+  box-shadow: 5px 7px 1px #aaa;
+  background-color: #fff;
+  /* background-color: #ff4545; */
+  border-radius: 10px;
+  text-align: center;
+  /* color: #fff; */
+  position: relative;
+}
+
+#tool_content i {
+  font-size: 50px;
+  line-height: 80px;
+}
+
+#t1 {
+  position: absolute;
+  left: 40px;
+}
+
+#t1:hover::before {
+  content: '放大';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+#t2 {
+  position: absolute;
+  left: 162.5px;
+  line-height: 100px;
+}
+
+#t2:hover::before {
+  content: '發亮';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+#t3 {
+  position: absolute;
+  left: 285px;
+  line-height: 100px;
+}
+
+#t3:hover::before {
+  content: '???';
+  position: absolute;
+  top: 50px;
+  left: 55px;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 45px;
+  height: 25px;
+  font-size: 14px;
+  color: #fff;
+  line-height: 25px;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.t_time {
+  font-size: 70px;
+  line-height: 93px;
+  /* start_btn 的顏色 */
+  color: #ff79a4;
+  /* color: rgb(255, 118, 118); */
+  display: none;
+  font-weight: 600;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -48%);
+}
+
+/* left - 畫面分隔線 */
+#line {
+  width: 350px;
+  height: 4.5px;
+  background-color: #fff;
+  box-shadow: 0.5px 0 1px #aaa;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-48%);
+  bottom: 90px;
+  box-shadow: 5px 7px 1px #aaa;
+}
+
+/* 中間-遊戲區位置 */
+/* 中間-遊戲區位置 */
+/* 中間-遊戲區位置 */
+
+#middle_game {
+  position: relative;
+  float: left;
+  margin-left: 20px;
+
+  width: 1000px;
+  height: 910px;
+
+  /* margin-right:30px; */
+  margin-top: 15px;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+  border-radius: 10px;
+
+  background-color: #ffffff;
+}
+
+/* 遊戲開始倒數 */
+#number {
+  position: absolute;
+  left: 400px;
+  top: 65px;
+  /* transform: translate(-54%, -48%); */
+  font-family: '俐方體11號';
+  color: #ff79a4;
+  transform: rotate(8deg);
+  /* text-shadow: 0 0 20px #80f9ff;
+	text-shadow: 0 0 40px #ff79a4;
+	text-shadow: 0 0 40px #ffffff; */
+  /* 倒數開始給的屬性 350 */
+  font-size: 0px;
+}
+
+/* 遊戲區背景圖 */
+#game_img {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  /* 倒數計時 */
+  /* opacity: 0.4; */
+}
+
+#game {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  overflow: hidden;
+}
+
+/* map01放地圖區 */
+
+#gameBox2_map01,
+#gameBox1_map01 {
+  display: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* map01 第一層的遮蔽 */
+#map01_cantClickBox1 {
+  opacity: 0;
+}
+
+#cantClick1 {
+  position: absolute;
+  bottom: 0;
+  width: 770px;
+  height: 122px;
+  background-color: #ff0000;
+  opacity: 0.4;
+}
+#cantClick2 {
+  position: absolute;
+  bottom: 0;
+  left: 770px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 122px 0 0 125px;
+  border-color: transparent transparent transparent #007bff;
+  opacity: 0.5;
+}
+#cantClick3 {
+  position: absolute;
+  top: 550px;
+  left: 0px;
+  width: 0px;
+  height: 0px;
+  border-style: solid;
+  border-width: 40px 0 0 145px;
+  border-color: transparent transparent transparent #007bff;
+  opacity: 0.5;
+}
+#cantClick4 {
+  position: absolute;
+  bottom: 0;
+  width: 140px;
+  height: 310px;
+  background-color: #00ff62;
+  opacity: 0.4;
+}
+#cantClick5 {
+  position: absolute;
+  bottom: 111px;
+  left: 150px;
+  width: 125px;
+  height: 50px;
+  background-color: #00ff62;
+  opacity: 0.7;
+}
+#cantClick6 {
+  position: absolute;
+  bottom: 115px;
+  left: 486px;
+  width: 106.5px;
+  height: 50px;
+  background-color: #00ff62;
+  opacity: 0.5;
+}
+#cantClick7 {
+  position: absolute;
+  bottom: 85px;
+  left: 732px;
+  width: 88px;
+  height: 55px;
+  background-color: #00ff62;
+  transform: rotate(30deg) skew(-30deg);
+  opacity: 0.5;
+}
+#cantClick8 {
+  position: absolute;
+  bottom: 37px;
+  left: 780px;
+  width: 60px;
+  height: 70px;
+  background-color: #0026ff;
+  opacity: 0.5;
+}
+#cantClick9 {
+  position: absolute;
+  bottom: 0px;
+  left: 860px;
+  width: 25px;
+  height: 50px;
+  background-color: #d400ff;
+  opacity: 0.5;
+}
+#cantClick10 {
+  position: absolute;
+  bottom: 335px;
+  left: 32px;
+  width: 15px;
+  height: 50px;
+  background-color: #d400ff;
+  opacity: 0.5;
+}
+
+/* map01 第二層的遮蔽(車) */
+#map01_cantClickBox2 {
+  opacity: 0;
+}
+
+/* 灰車 */
+#cantClickBox2_1 {
+  position: absolute;
+  top: 471px;
+  left: 190px;
+  border-radius: 20px;
+  width: 70px;
+  height: 60px;
+  background-color: violet;
+  opacity: 0.5;
+  transform: skew(-58deg) rotate(15deg);
+}
+#cantClickBox2_2 {
+  position: absolute;
+  top: 468px;
+  left: 178px;
+  border-radius: 20px;
+  width: 80px;
+  height: 55px;
+  background-color: rgb(146, 130, 238);
+  opacity: 0.5;
+  transform: skew(15deg);
+}
+#cantClickBox2_3 {
+  position: absolute;
+  top: 517px;
+  left: 200px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg);
+}
+#cantClickBox2_4 {
+  position: absolute;
+  top: 485px;
+  left: 260px;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg);
+}
+
+/* 黃紅車 */
+#cantClickBox2_5 {
+  position: absolute;
+  top: 343px;
+  left: 502px;
+  border-radius: 15px;
+  width: 40px;
+  height: 187px;
+  background-color: rgb(130, 238, 179);
+  opacity: 0.7;
+  transform: skew(-8deg) rotate(-240deg);
+}
+#cantClickBox2_6 {
+  position: absolute;
+  top: 375px;
+  left: 430px;
+  border-radius: 15px;
+  width: 60px;
+  height: 47px;
+  background-color: rgb(238, 204, 130);
+  opacity: 0.7;
+  transform: skew(1deg) rotate(10deg);
+}
+#cantClickBox2_7 {
+  position: absolute;
+  top: 365px;
+  left: 403px;
+  width: 0;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 0 42px 40px;
+  border-color: transparent transparent #007bff transparent;
+  opacity: 0.7;
+  transform: rotate(20deg);
+}
+#cantClickBox2_8 {
+  position: absolute;
+  top: 430px;
+  left: 560px;
+  width: 0;
+  height: 0px;
+  border-style: solid;
+  border-width: 0 0 35px 38px;
+  border-color: transparent transparent #7bff00 transparent;
+  opacity: 0.7;
+  transform: rotate(-9deg);
+}
+#cantClickBox2_9 {
+  position: absolute;
+  top: 427px;
+  left: 550px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(247, 0, 152);
+  opacity: 0.7;
+  transform: rotate(-28deg) skew(10deg);
+  border-radius: 10px;
+}
+
+/* 綠車 */
+#cantClickBox2_10 {
+  position: absolute;
+  top: 674px;
+  left: 390px;
+  border-radius: 25px 20px 25px 15px;
+  width: 78px;
+  height: 68px;
+  background-color: rgb(146, 130, 238);
+  opacity: 0.7;
+  transform: skew(30deg);
+}
+#cantClickBox2_11 {
+  position: absolute;
+  top: 687px;
+  left: 338px;
+  border-radius: 50px 20px 25px 40px;
+  width: 78px;
+  height: 58px;
+  background-color: rgb(130, 238, 166);
+  opacity: 0.4;
+  /* transform: skew(30deg); */
+}
+
+/* 藍色 */
+#cantClickBox2_12 {
+  position: absolute;
+  top: 580px;
+  left: 705.5px;
+  border-radius: 100px 20px 50px 40px;
+  width: 82px;
+  height: 58px;
+  background-color: rgb(130, 238, 166);
+  opacity: 0.4;
+  transform: rotate(16deg);
+}
+#cantClickBox2_13 {
+  position: absolute;
+  top: 608px;
+  left: 750px;
+  border-radius: 0px 5px 45px 4px;
+  width: 60px;
+  height: 60px;
+  background-color: rgb(253, 2, 2);
+  opacity: 0.4;
+  transform: rotate(50deg);
+}
+
+/* 多層地圖的img */
+#map01_1_img {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#map01_21_img {
+  position: absolute;
+  top: 464px;
+  left: 145px;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#map01_22_img {
+  position: absolute;
+  top: 671px;
+  left: 339px;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#map01_23_img {
+  position: absolute;
+  top: 578px;
+  left: 702px;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+#map01_24_img {
+  position: absolute;
+  top: 359px;
+  left: 392px;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* 遊戲區的 willy 大小 */
+
+#gameBox0_role,
+#gameBox1_role,
+#gameBox2_role {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.role_doIt {
+  position: absolute;
+  width: 30px;
+}
+
+.role_doIt img {
+  width: 100%;
+}
+
+.willyBox {
+  position: absolute;
+  /* left: 50%; */
+  width: 30px;
+  height: 68px;
+  /* width: 50px; */
+}
+
+.willyBox img {
+  width: 100%;
+}
+
+/* woman 大小 */
+.womanBox {
+  position: absolute;
+  width: 30px;
+  /* height: 68px; */
+}
+
+.womanBox img {
+  width: 100%;
+}
+
+/* old 大小 */
+
+.oldBox {
+  position: absolute;
+  width: 30px;
+  height: 68px;
+}
+
+.oldBox img {
+  width: 100%;
+}
+
+/* willy dog 大小 */
+.dogBox {
+  position: absolute;
+  width: 50px;
+}
+
+.dogBox img {
+  width: 100%;
+}
+
+/* click後跳出的分數 */
+
+/* 分數樣式 */
+.jumpScore {
+  position: absolute;
+  padding: 5px;
+  padding-top: 6px;
+  font-size: 25px;
+  font-weight: 900;
+  background-color: rgba(255, 121, 163, 0.9);
+  border-radius: 10px;
+  color: rgb(38, 38, 38);
+  color: rgb(255, 255, 255);
+
+  /* 忽略點擊事件 */
+  pointer-events: none;
+}
+
+.pointerEvents_none {
+  pointer-events: none;
+}
+
+/* 右邊 */
+.right {
+  box-sizing: border-box;
+  width: 240px;
+  height: 910px;
+  /* background-color: #ff79a4; */
+  float: left;
+  margin-top: 15px;
+  margin-left: 20px;
+  /* margin-right: 20px; */
+  border: 5px solid #fff;
+  border-radius: 10px;
+  background-color: wheat;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+#title {
+  font-family: '俐方體11號';
+  font-size: 35px;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.box {
+  position: relative;
+  width: 200px;
+  height: 190px;
+  background-color: #d8d8d8;
+  background-color: #ffffff;
+  float: right;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  border: 5px solid #fff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px #aaa;
+}
+
+.box img {
+  position: absolute;
+  left: 45%;
+  top: 53%;
+  transform: translate(-50%, -50%);
+  height: 85%;
+  -webkit-user-drag: none;
+}
+
+#willy_dog_big {
+  height: 48%;
+  position: absolute;
+  left: 45%;
+  top: 56%;
+  transform: translate(-50%, -50%);
+}
+
+#willy_btn_L {
+  /* width: 40px;
+	height: 40px; */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -15px;
+
+  box-shadow: 3px 3px 1px #aaa;
+  background-color: #f6f6f6;
+  border-radius: 6px;
+  padding: 3px;
+  padding-left: 5px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: 'Pixel';
+  border: none;
+  cursor: pointer;
+}
+
+#willy_btn_R {
+  /* width: 40px;
+	height: 40px; */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -15px;
+  box-shadow: 3px 3px 1px #aaa;
+  background-color: #f6f6f6;
+  border-radius: 6px;
+  padding: 3px;
+  padding-left: 8px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  font-size: 20px;
+  font-weight: bolder;
+  font-family: 'Pixel';
+  border: none;
+  cursor: pointer;
+}
+
+/* 角色分數資訊 */
+.role_information {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* width: 100%;
+	height: 35px; */
+  height: 0px;
+  width: 0px;
+  border-width: 0 85px 75px 0;
+  border-color: transparent wheat transparent transparent;
+  /* border-color: #d8d8d8 transparent transparent transparent; */
+
+  border-style: solid;
+  /* background-color: #ff79a4; */
+  /* background-color: wheat   ; */
+  /* opacity: 0.7; */
+  /* text-align: center; */
+  font-family: '俐方體11號';
+  /* font-size: 17px; */
+  font-weight: 600;
+}
+
+/* .word {
+	position: absolute;
+	top: 2px;
+	left: 46px;
+} */
+
+.role_score {
+  position: absolute;
+  top: 2px;
+  right: -62px;
+}
+
+.role_score_word_01 {
+  position: absolute;
+  /* top: 15px; */
+  top: 12px;
+  left: 34px;
+  color: #ff0000;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.role_score_word_02 {
+  position: absolute;
+  /* top: 15px; */
+  top: 18px;
+  left: 64px;
+}
+
+/* 角色分數 */
+.role_score {
+  color: #ff0000;
+  font-weight: 800;
+  font-size: 35px;
+}
+
+/* 角色數量*/
+.role_have {
+  color: #ff0000;
+  font-weight: 800;
+  font-size: 25px;
+}
